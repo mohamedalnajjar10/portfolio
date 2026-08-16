@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Spydy Portfolio — Mohamed Al Najjar, backend developer crafting fast, secure and real-time systems." />
+  <meta name="theme-color" content="#0A0A0A" />
+  <title>Spydy Portfolio | Mohamed Al Najjar</title>
+
+  <!-- Spider-emoji favicon (no extra file needed) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%95%B7%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+
+  <!-- Google Fonts (only external font allowed) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <!--
+    Inline SVG fallback art.
+    If any /assets PNG is missing, `onerror` swaps in this stylized spider
+    silhouette so the layout stays identical. Drop the real PNGs into /assets
+    and the placeholders are never used.
+  -->
+  <script>
+    window.SPIDEY_ART = {
+      head: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g fill="none" stroke="#0A0A0A" stroke-width="9" stroke-linecap="round"><path d="M20 72 Q0 38 16 2M30 48 Q14 20 34 -6M42 24 Q34 -2 58 -14M62 2 Q62 -18 86 -24"/><path d="M180 72 Q200 38 184 2M170 48 Q186 20 166 -6M158 24 Q166 -2 142 -14M138 2 Q138 -18 114 -24"/></g><circle cx="100" cy="102" r="78" fill="#0A0A0A"/><ellipse cx="73" cy="100" rx="23" ry="30" fill="#FFFFFF"/><ellipse cx="127" cy="100" rx="23" ry="30" fill="#FFFFFF"/></svg>',
+      hero: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><g fill="none" stroke="#0A0A0A" stroke-width="14" stroke-linecap="round"><path d="M60 210 Q20 140 60 40M90 180 Q60 110 100 30M120 160 Q110 90 160 40M160 150 Q160 80 210 50"/><path d="M340 210 Q380 140 340 40M310 180 Q340 110 300 30M280 160 Q290 90 240 40M240 150 Q240 80 190 50"/></g><circle cx="200" cy="260" r="130" fill="#0A0A0A"/><ellipse cx="150" cy="255" rx="38" ry="48" fill="#FFFFFF"/><ellipse cx="250" cy="255" rx="38" ry="48" fill="#FFFFFF"/><path d="M120 420 Q200 380 280 420 L270 470 Q200 500 130 470 Z" fill="#0A0A0A"/></svg>',
+      stand: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><g fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round"><path d="M52 150 Q30 180 40 230M68 162 Q56 190 70 240M86 168 Q86 196 102 240M104 168 Q118 196 132 240M122 162 Q140 190 154 240M136 150 Q162 180 158 230"/></g><circle cx="100" cy="70" r="52" fill="#0A0A0A"/><ellipse cx="84" cy="72" rx="16" ry="21" fill="#FFFFFF"/><ellipse cx="116" cy="72" rx="16" ry="21" fill="#FFFFFF"/><path d="M62 120 Q100 100 138 120 L130 190 Q100 210 70 190 Z" fill="#0A0A0A"/></svg>',
+      hang: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><g transform="rotate(180 100 150)"><g fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round"><path d="M52 150 Q30 180 40 230M68 162 Q56 190 70 240M86 168 Q86 196 102 240M104 168 Q118 196 132 240M122 162 Q140 190 154 240M136 150 Q162 180 158 230"/></g><circle cx="100" cy="70" r="52" fill="#0A0A0A"/><ellipse cx="84" cy="72" rx="16" ry="21" fill="#FFFFFF"/><ellipse cx="116" cy="72" rx="16" ry="21" fill="#FFFFFF"/><path d="M62 120 Q100 100 138 120 L130 190 Q100 210 70 190 Z" fill="#0A0A0A"/></g></svg>'
+    };
+    window.spideyFallback = function (kind, img) {
+      if (img.dataset.fb) return;
+      img.dataset.fb = "1";
+      img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(window.SPIDEY_ART[kind] || window.SPIDEY_ART.head);
+    };
+  </script>
+</head>
+
+<body>
+
+  <!-- ===== Decorative radial spider-webs (fixed, subtle parallax via GSAP) ===== -->
+  <svg class="web-deco web-tl" viewBox="0 0 400 400" fill="none" stroke="#CFC9BC" aria-hidden="true">
+    <g stroke-width="2">
+      <circle cx="0" cy="0" r="60"/><circle cx="0" cy="0" r="120"/><circle cx="0" cy="0" r="180"/>
+      <circle cx="0" cy="0" r="240"/><circle cx="0" cy="0" r="300"/>
+      <path d="M0 0 L400 0 M0 0 L346 200 M0 0 L200 346 M0 0 L0 400 M0 0 L-200 346 M0 0 L-346 200"/>
+    </g>
+  </svg>
+  <svg class="web-deco web-mr" viewBox="0 0 400 400" fill="none" stroke="#CFC9BC" aria-hidden="true">
+    <g stroke-width="2">
+      <circle cx="0" cy="0" r="70"/><circle cx="0" cy="0" r="140"/><circle cx="0" cy="0" r="210"/><circle cx="0" cy="0" r="280"/>
+      <path d="M0 0 L400 0 M0 0 L346 200 M0 0 L200 346 M0 0 L0 400 M0 0 L-200 346 M0 0 L-346 200"/>
+    </g>
+  </svg>
+
+  <!-- ===== Fixed black top navbar ===== -->
+  <header class="navbar" id="navbar">
+    <nav class="container nav-inner" aria-label="Main navigation">
+      <a href="#home" class="brand" aria-label="Back to top">
+        <!-- 🖼 imgs/13.jpg = small round logo image next to the name -->
+        <img class="brand-img" src="imgs/13.jpg" alt="" aria-hidden="true" />
+        <span>ALNAJJAR.</span>
+      </a>
+      <ul class="nav-links">
+        <li><a class="nav-link" href="#about">ABOUT</a></li>
+        <li><a class="nav-link" href="#skills">SKILLS</a></li>
+        <li><a class="nav-link" href="#projects">PROJECTS</a></li>
+        <li><a class="nav-link" href="#contact">CONTACT</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ================= 1) HERO ================= -->
+    <section id="home" class="hero section">
+      <div class="container">
+        <div class="hero-figure">
+          <div class="reveal-stack" id="revealStack">
+            <!-- 🖼 imgs/16.jpg = Spider-Man art, base layer, shown in its entirety -->
+            <img class="mask" src="imgs/16.jpg" alt="Spider-Man mask artwork" onerror="window.spideyFallback('hero', this)" />
+            <!-- 🖼 imgs/14.jpg = your real photo, rendered inside the SVG and
+                 clipped to a circle that follows the cursor (app.js moves the
+                 #reveal-spot circle). Only the part under the cursor shows. -->
+            <svg class="photo-svg" viewBox="0 0 400 500" aria-hidden="true">
+              <defs>
+                <clipPath id="reveal-clip">
+                  <circle id="reveal-spot" cx="200" cy="250" r="0" />
+                </clipPath>
+              </defs>
+              <image href="imgs/14.jpg" x="0" y="0" width="400" height="500"
+                     preserveAspectRatio="xMidYMid slice" clip-path="url(#reveal-clip)" />
+            </svg>
+          </div>
+          <p class="hero-hint">hover to reveal 👀</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 2) CROSSED MARQUEE RIBBONS (pure CSS animation) ================= -->
+    <section class="marquee-band" aria-hidden="true">
+      <div class="ribbon ribbon-red">
+        <div class="ribbon-track">
+          <div class="ribbon-group">
+            <span class="ribbon-item">BACKEND DEVELOPER</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">RESTFUL APIS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">LARAVEL</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">DATABASE DESIGN</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">JWT &amp; SECURITY</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">CLEAN CODE</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+          </div>
+          <div class="ribbon-group">
+            <span class="ribbon-item">BACKEND DEVELOPER</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">RESTFUL APIS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">LARAVEL</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">DATABASE DESIGN</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">JWT &amp; SECURITY</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">CLEAN CODE</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+          </div>
+        </div>
+      </div>
+      <div class="ribbon ribbon-black">
+        <div class="ribbon-track">
+          <div class="ribbon-group">
+            <span class="ribbon-item">BACKEND DEVELOPER</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">RESTFUL APIS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">LARAVEL</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">DATABASE DESIGN</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">JWT &amp; SECURITY</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">CLEAN CODE</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+          </div>
+          <div class="ribbon-group">
+            <span class="ribbon-item">BACKEND DEVELOPER</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">RESTFUL APIS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">LARAVEL</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">DATABASE DESIGN</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">JWT &amp; SECURITY</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+            <span class="ribbon-item">CLEAN CODE</span>
+            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 3) ABOUT ================= -->
+    <section id="about" class="section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-label">🕷 BEHIND THE MASK</p>
+          <h2 class="section-title">MOHAMED AL NAJJAR.</h2>
+        </header>
+        <div class="about-grid">
+          <div class="about-copy" data-reveal>
+            <p>Results-driven Backend Developer with 2+ years of experience building scalable RESTful APIs and backend systems using Node.js, Express.js, Nest.js and Laravel. Proven expertise in database design with MySQL, PostgreSQL, and MongoDB, implementing secure authentication with JWT, and real-time communication using WebSocket and Socket.io.</p>
+            <p>Strong focus on clean code architecture, comprehensive testing, and agile development methodologies. Demonstrated ability to optimize system performance, achieving up to 45% improvement in query response times and supporting 1,800+ concurrent users with 99.7% uptime.</p>
+            <h3 class="chip-title">PRIMARY TECH STACK</h3>
+            <div class="chips">
+              <span class="chip">JavaScript</span><span class="chip">TypeScript</span>
+              <span class="chip">Node.js</span><span class="chip">Express.js</span>
+              <span class="chip">NestJS</span><span class="chip">Laravel</span>
+              <span class="chip">MySQL</span><span class="chip">PostgreSQL</span>
+              <span class="chip">MongoDB</span><span class="chip">Prisma</span>
+              <span class="chip">Docker</span><span class="chip">WebSocket</span>
+            </div>
+          </div>
+          <div class="about-figure" data-reveal>
+            <!-- Circular photo hangs from a web thread and swings (CSS keyframes) -->
+            <div class="thread"></div>
+            <div class="swing-wrap">
+              <!-- 🖼 imgs/14.jpg = same real photo as the hero (square crop works best here) -->
+              <img class="circle-photo" src="imgs/14.jpg" alt="Portrait of Mohamed Al Najjar" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 4) SKILLS ================= -->
+    <section id="skills" class="section">
+      <div class="container skills-wrap">
+        <header class="section-head" data-reveal>
+          <p class="section-label">ARSENAL &amp; EXPERTISE</p>
+          <h2 class="section-title">TECHNICAL SKILLS.</h2>
+        </header>
+
+        <!-- Small spider hanging from a web thread on the right edge -->
+        <div class="hanging-spider" aria-hidden="true">
+          <div class="thread"></div>
+          <img src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
+        </div>
+
+        <div class="skills-grid">
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">JAVASCRIPT &amp; TYPESCRIPT</h3>
+              <p class="skill-sub">PROGRAMMING LANGUAGES</p>
+            </div>
+            <span class="skill-level">EXPERT</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">NODE.JS &amp; EXPRESS.JS</h3>
+              <p class="skill-sub">BACKEND FRAMEWORKS</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">NEST.JS</h3>
+              <p class="skill-sub">ENTERPRISE ARCHITECTURE</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">LARAVEL &amp; PHP</h3>
+              <p class="skill-sub">BACKEND FRAMEWORKS</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">MYSQL / POSTGRESQL / MONGODB</h3>
+              <p class="skill-sub">DATABASE DESIGN</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">PRISMA, SEQUELIZE &amp; TYPEORM</h3>
+              <p class="skill-sub">ORMS</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">JWT, OAUTH &amp; RBAC</h3>
+              <p class="skill-sub">AUTH &amp; SECURITY</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">WEBSOCKET &amp; SOCKET.IO</h3>
+              <p class="skill-sub">REAL-TIME SYSTEMS</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">JEST, UNIT &amp; INTEGRATION TESTING</h3>
+              <p class="skill-sub">QUALITY</p>
+            </div>
+            <span class="skill-level">PROFICIENT</span>
+          </article>
+
+          <article class="skill-card">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">DOCKER, GIT, GITHUB, POSTMAN, SWAGGER</h3>
+              <p class="skill-sub">TOOLS &amp; DEVOPS</p>
+            </div>
+            <span class="skill-level">PROFICIENT</span>
+          </article>
+
+          <article class="skill-card wide">
+            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
+              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
+                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
+                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
+              </g>
+              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
+            </svg>
+            <div class="skill-mid">
+              <h3 class="skill-title">RESTFUL API DESIGN &amp; GRAPHQL</h3>
+              <p class="skill-sub">DEVELOPMENT PRACTICES</p>
+            </div>
+            <span class="skill-level">ADVANCED</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 5) PROJECTS ================= -->
+    <section id="projects" class="section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-label">FEATURED WORKS</p>
+          <h2 class="section-title">PROJECTS.</h2>
+        </header>
+        <div class="projects-layout" data-reveal>
+          <!-- Standing Spider-Man figure on the left of the grid (imgs/16.jpg reused) -->
+          <img class="spidy-stand" src="imgs/16.jpg" alt="" aria-hidden="true" onerror="window.spideyFallback('stand', this)" />
+          <!-- Cards are rendered from the PROJECTS data in app.js -->
+          <div id="projects-grid" class="projects-grid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 6) EDUCATION & CERTIFICATIONS ================= -->
+    <section id="education" class="section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-label">THE ORIGIN STORY</p>
+          <h2 class="section-title">EDUCATION &amp; CERTIFICATIONS.</h2>
+        </header>
+
+        <div class="edu-card" data-reveal>
+          <div class="edu-icon" aria-hidden="true">🎓</div>
+          <div>
+            <h3 class="edu-degree">BACHELOR'S DEGREE IN SOFTWARE ENGINEERING</h3>
+            <p class="edu-school">Al Azhar University — Gaza, Palestine</p>
+            <span class="date-badge edu-years">2020 – 2026</span>
+          </div>
+        </div>
+
+        <h3 class="chip-title" data-reveal>CERTIFICATIONS</h3>
+        <div class="cert-chips">
+          <span class="cert-chip">🕷 <span>Node.js Application Developer</span><em>2024</em></span>
+          <span class="cert-chip">🕷 <span>Nest.js Application Developer</span><em>2024</em></span>
+          <span class="cert-chip">🕷 <span>Understanding SDLC, System Requirements, Agile, Scrum and Jira</span><em>2025</em></span>
+          <span class="cert-chip">🕷 <span>Docker Practical Course</span><em>2026</em></span>
+          <span class="cert-chip">🕷 <span>GitLab CI/CD</span><em>2026</em></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= 7) CONTACT ================= -->
+    <section id="contact" class="section">
+      <div class="container">
+        <header class="section-head" data-reveal>
+          <p class="section-label">🕷 GET IN TOUCH</p>
+          <h2 class="section-title">CONTACT.</h2>
+        </header>
+
+        <div class="contact-grid">
+          <form id="contact-form" class="contact-card" data-reveal novalidate>
+            <div class="field">
+              <label for="form-name">YOUR NAME</label>
+              <input id="form-name" name="name" type="text" placeholder="Peter Parker" required />
+            </div>
+            <div class="field">
+              <label for="form-email">YOUR EMAIL</label>
+              <input id="form-email" name="email" type="email" placeholder="parker@daily.com" required />
+            </div>
+            <div class="field">
+              <label for="form-message">MESSAGE</label>
+              <textarea id="form-message" name="message" rows="5" placeholder="Let's build something amazing together..." required></textarea>
+            </div>
+            <button class="btn btn-red btn-send" type="submit">SEND MESSAGE</button>
+          </form>
+
+          <div class="contact-figure" data-reveal>
+            <div class="thread"></div>
+            <!-- 🖼 imgs/15.jpg = hanging Spider-Man in the contact section.
+                 If the image is upright instead of upside-down, add `transform: rotate(180deg);` to .spidy-hang in style.css -->
+            <img class="spidy-hang" src="imgs/15.jpg" alt="" aria-hidden="true" onerror="window.spideyFallback('hang', this)" />
+          </div>
+        </div>
+
+        <div class="contact-bottom" data-reveal>
+          <p class="contact-row">
+            <span>📍 Egypt</span><span class="dot">•</span>
+            <span>📞 +20 122 863 5405</span><span class="dot">•</span>
+            <span>✉ mohamedalnajjar1000@gmail.com</span>
+          </p>
+          <div class="contact-btns">
+            <a class="btn btn-dark" href="https://www.linkedin.com/in/mohamedalnajjar10/" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24V8.31zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.93V23h-4.51v-7.18c0-1.71-.03-3.91-2.38-3.91-2.39 0-2.75 1.86-2.75 3.79V23H8.34V8.31z"/>
+              </svg>
+              LINKEDIN
+            </a>
+            <a class="btn btn-dark" href="https://github.com/mohamedalnajjar10/" target="_blank" rel="noopener">
+              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11.05 11.05 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+              </svg>
+              GITHUB
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= 8) FOOTER ================= -->
+  <footer class="footer">
+    <div class="container">
+      <p>© 2026 Mohamed Al Najjar — With great power comes great responsibility. 🕷</p>
+    </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger (only allowed CDN libraries) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,1002 @@
+/* =====================================================================
+   SPYDY PORTFOLIO — style.css
+   Spider-Man themed developer portfolio. Vanilla CSS only.
+   ===================================================================== */
+
+/* ------------------------- DESIGN TOKENS ------------------------- */
+:root {
+  --paper: #F4F1EC;        /* paper off-white background          */
+  --ink:   #0A0A0A;        /* ink black                           */
+  --red:   #E62429;        /* spidey red                          */
+  --blue:  #1F4287;        /* dark blue (accents)                 */
+  --line:  #CFC9BC;        /* light gray web lines                */
+  --card:  #FFFFFF;        /* card surface                        */
+
+  --font-display: "Anton", "Archivo Black", sans-serif;
+  --font-body: "Inter", "Space Grotesk", system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+
+  --shadow-hard: 6px 6px 0 rgba(10, 10, 10, 0.9);
+  --border-thin: 2px solid var(--ink);
+}
+
+/* ------------------------- RESET / BASE ------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px; /* keeps anchored sections below the fixed navbar */
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.5;
+  overflow-x: hidden; /* rotated ribbons must never create a horizontal scrollbar */
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+::selection {
+  background: var(--red);
+  color: #fff;
+}
+
+/* Custom red comic scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--red);
+  border: 3px solid var(--ink);
+}
+html {
+  scrollbar-color: var(--red) var(--ink);
+}
+
+.container {
+  width: min(1180px, 92%);
+  margin-inline: auto;
+}
+
+.section {
+  padding: 104px 0;
+}
+
+/* ------------------------- DECORATIVE WEBS ------------------------- */
+/* Fixed radial spider-webs, top-left corner and mid-right edge.
+   Subtle parallax applied from app.js (GSAP scrub). */
+.web-deco {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 340px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.9;
+}
+
+.web-mr {
+  left: auto;
+  right: -90px;
+  top: 45%;
+  width: 300px;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+/* ------------------------- SECTION HEADERS ------------------------- */
+.section-head {
+  margin-bottom: 56px;
+}
+
+.section-label {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  border: var(--border-thin);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  box-shadow: 5px 5px 0 var(--red);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.9rem, 7vw, 5.2rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  margin-top: 22px;
+  /* comic 3D red offset shadow */
+  text-shadow: 3px 3px 0 var(--red), 6px 6px 0 var(--red);
+}
+
+/* ------------------------- BUTTONS ------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border: var(--border-thin);
+  box-shadow: var(--shadow-hard);
+  font-weight: 800;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-red {
+  background: var(--red);
+}
+
+.btn-dark {
+  background: var(--ink);
+}
+
+.btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px 0 rgba(10, 10, 10, 0.9);
+}
+
+.btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0;
+}
+
+.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* ------------------------- NAVBAR ------------------------- */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(6px);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* solid black + red underline after scrolling (toggled in app.js) */
+.navbar.scrolled {
+  background: var(--ink);
+  box-shadow: 0 4px 0 var(--red);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-spider,
+.brand-img {
+  width: 30px;
+  height: 30px;
+}
+
+/* 🖼 imgs/13.jpg logo image: small red-ringed round badge */
+.brand-img {
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--red);
+}
+
+.brand span {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.06em;
+  color: #fff;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.nav-link {
+  position: relative;
+  color: #fff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 6px 0;
+  transition: color 0.2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 3px;
+  background: var(--red);
+  transition: width 0.25s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--red);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* ------------------------- 1) HERO ------------------------- */
+/* Full-bleed Spider-Man artwork covering the entire screen. */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Hero figure fills the whole viewport */
+.hero-figure {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* The artwork is portrait (1013x1600): it is scaled to the full height of the
+   first screen (100%), centered — never cropped. On narrow screens it shrinks
+   to fit the width instead, keeping the whole image visible. */
+.reveal-stack {
+  position: relative;
+  width: min(100vw, calc(100vh * 0.633125));
+  width: min(100vw, calc(100svh * 0.633125));
+  aspect-ratio: 1013 / 1600;
+  overflow: hidden;
+  background: var(--ink);
+  transition: transform 0.3s ease;
+}
+
+.reveal-stack:hover {
+  transform: scale(1.01);
+}
+
+/* Layers: Spider-Man art fills the full height of the stack at its natural
+   ratio (never cropped). The photo lives inside an inline SVG overlay
+   (imgs/14.jpg) clipped by a circle whose position is set directly as SVG
+   attributes from app.js (no clip-path/CSS-var tricks). */
+.reveal-stack .mask {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.reveal-stack .photo-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none; /* let cursor events reach the stack */
+}
+
+/* Hint pill floating at the bottom of the full-screen artwork */
+.hero-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  z-index: 3;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(10, 10, 10, 0.65);
+  border: 2px solid var(--red);
+  padding: 9px 20px;
+  white-space: nowrap;
+}
+
+/* ------------------------- 2) MARQUEE RIBBONS ------------------------- */
+.marquee-band {
+  position: relative;
+  padding: 90px 0;
+  overflow: hidden;
+}
+
+.ribbon {
+  position: relative;
+  width: 112%;
+  margin-left: -6%;
+  padding: 14px 0;
+  border: 3px solid var(--ink);
+  box-shadow: 8px 8px 0 rgba(10, 10, 10, 0.9);
+  overflow: hidden;
+}
+
+.ribbon-red {
+  background: var(--red);
+  color: #fff;
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+.ribbon-black {
+  background: var(--ink);
+  color: var(--red);
+  transform: rotate(1.5deg);
+  margin-top: -28px;
+  z-index: 2;
+}
+
+.ribbon-track {
+  display: flex;
+  width: max-content;
+  animation: ribbon-scroll 22s linear infinite;
+}
+
+.ribbon-black .ribbon-track {
+  animation-duration: 26s;
+  animation-direction: reverse;
+}
+
+/* Seamless loop: two identical groups, each padded by the gap size */
+.ribbon-group {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  flex: none;
+}
+
+@keyframes ribbon-scroll {
+  to { transform: translateX(-50%); }
+}
+
+.ribbon-item {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2.6vw, 1.5rem);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.ribbon-head {
+  width: 34px;
+  height: 34px;
+  flex: none;
+}
+
+/* ------------------------- 3) ABOUT ------------------------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.about-copy p {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: #333;
+}
+
+.about-copy p + p {
+  margin-top: 18px;
+}
+
+.chip-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 36px 0 18px;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  border: var(--border-thin);
+  background: var(--card);
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 4px 4px 0 rgba(10, 10, 10, 0.9);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.chip:hover {
+  background: var(--red);
+  color: #fff;
+  transform: translate(-2px, -2px);
+}
+
+/* Swinging circular photo hanging from a web thread */
+.about-figure {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.thread {
+  width: 3px;
+  height: 70px;
+  margin-inline: auto;
+  background: var(--ink);
+  border-radius: 3px;
+}
+
+.swing-wrap {
+  display: inline-block;
+  margin-top: 8px;
+  transform-origin: top center;
+  animation: swing 4.5s ease-in-out infinite;
+}
+
+.circle-photo {
+  width: min(300px, 80%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 6px solid var(--red);
+  outline: 3px solid var(--ink);
+  outline-offset: -14px;
+  box-shadow: 10px 10px 0 rgba(10, 10, 10, 0.9);
+}
+
+@keyframes swing {
+  0%, 100% { transform: rotate(-7deg); }
+  50%      { transform: rotate(7deg); }
+}
+
+/* ------------------------- 4) SKILLS ------------------------- */
+.skills-wrap {
+  position: relative;
+}
+
+/* Little spider dangling from a thread on the right edge */
+.hanging-spider {
+  position: absolute;
+  right: 1.5%;
+  top: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hanging-spider .thread {
+  height: 80px;
+}
+
+.hanging-spider img {
+  width: 58px;
+  margin-top: 8px;
+  animation: swing 5s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.skill-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--card);
+  border: var(--border-thin);
+  box-shadow: var(--shadow-hard);
+  padding: 20px 22px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--red);
+}
+
+.skill-card.wide {
+  grid-column: 1 / -1;
+}
+
+.spider-bullet {
+  width: 24px;
+  height: 24px;
+  flex: none;
+}
+
+.skill-mid {
+  flex: 1;
+  min-width: 0;
+}
+
+.skill-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.25;
+}
+
+.skill-sub {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #777;
+  margin-top: 4px;
+}
+
+.skill-level {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--red);
+  text-transform: uppercase;
+  flex: none;
+}
+
+/* ------------------------- 5) PROJECTS ------------------------- */
+.projects-layout {
+  position: relative;
+}
+
+/* Standing Spider-Man figure on the left of the grid */
+.spidy-stand {
+  position: absolute;
+  left: -40px;
+  bottom: -30px;
+  width: 220px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Desktop: keep space free for the standing figure */
+@media (min-width: 1100px) {
+  .projects-layout {
+    padding-left: 200px;
+  }
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: var(--card);
+  border: var(--border-thin);
+  box-shadow: var(--shadow-hard);
+  padding: 24px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 9px 9px 0 var(--red);
+}
+
+.project-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  flex: 1;
+}
+
+.project-top-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex: none;
+}
+
+.date-badge {
+  display: inline-block;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  box-shadow: 3px 3px 0 var(--red);
+  white-space: nowrap;
+}
+
+.project-link {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: var(--border-thin);
+  color: var(--red);
+  box-shadow: 3px 3px 0 rgba(10, 10, 10, 0.9);
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.project-link:hover {
+  background: var(--red);
+  color: #fff;
+  transform: translate(2px, 2px);
+}
+
+.project-bullets {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-bullets li {
+  position: relative;
+  padding-left: 18px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: #333;
+}
+
+.project-bullets li::before {
+  content: "•";
+  position: absolute;
+  left: 2px;
+  color: var(--red);
+  font-weight: 900;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--ink);
+  background: var(--paper);
+  padding: 4px 10px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tag:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ------------------------- 6) EDUCATION & CERTIFICATIONS ------------------------- */
+.edu-card {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: var(--card);
+  border: var(--border-thin);
+  box-shadow: var(--shadow-hard);
+  padding: 28px;
+}
+
+.edu-icon {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  flex: none;
+  border: var(--border-thin);
+  background: var(--paper);
+  font-size: 2.2rem;
+  box-shadow: 4px 4px 0 var(--red);
+}
+
+.edu-degree {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.edu-school {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 6px;
+}
+
+.edu-years {
+  margin-top: 12px;
+}
+
+.cert-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cert-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--card);
+  border: var(--border-thin);
+  box-shadow: 4px 4px 0 rgba(10, 10, 10, 0.9);
+  padding: 10px 16px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cert-chip:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--red);
+}
+
+.cert-chip em {
+  font-family: var(--font-display);
+  font-style: normal;
+  color: var(--red);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+/* ------------------------- 7) CONTACT ------------------------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: start;
+}
+
+.contact-card {
+  background: var(--card);
+  border: var(--border-thin);
+  box-shadow: 8px 8px 0 rgba(10, 10, 10, 0.9);
+  padding: 34px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  border: var(--border-thin);
+  background: var(--paper);
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--red);
+  box-shadow: 4px 4px 0 var(--red);
+}
+
+.btn-send {
+  width: 100%;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+  padding: 18px 28px;
+  margin-top: 6px;
+}
+
+/* little shake when the form is submitted empty */
+.contact-card.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-8px); }
+  50%      { transform: translateX(8px); }
+  75%      { transform: translateX(-5px); }
+}
+
+.contact-figure {
+  text-align: center;
+  padding-top: 10px;
+}
+
+/* Upside-down hanging Spider-Man on the right */
+.spidy-hang {
+  width: min(230px, 80%);
+  margin: 8px auto 0;
+}
+
+.contact-bottom {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.contact-row .dot {
+  color: var(--red);
+  font-weight: 900;
+}
+
+.contact-btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+/* ------------------------- 8) FOOTER ------------------------- */
+.footer {
+  background: var(--ink);
+  color: #fff;
+  border-top: 4px solid var(--red);
+  padding: 36px 0;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* ------------------------- RESPONSIVE ------------------------- */
+@media (max-width: 1024px) {
+  .spidy-stand,
+  .hanging-spider {
+    display: none; /* too small to keep the decorative figures on tablets */
+  }
+  .projects-layout {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 860px) {
+  .about-grid,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .skills-grid,
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-link {
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    gap: 10px;
+  }
+
+  .brand span {
+    font-size: 1.1rem;
+  }
+
+  .edu-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-row {
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+/* ------------------------- ACCESSIBILITY ------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
