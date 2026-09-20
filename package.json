@@ -1,7 +1,7 @@
 {
   "name": "glorytech-showcase-website",
   "version": "1.0.0",
-  "description": "Production-ready service showcase website for GloryTech",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"

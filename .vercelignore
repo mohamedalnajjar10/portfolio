@@ -1,4 +1,0 @@
-# Ignore local server script on Vercel so Vercel deploys frontend as static CDN assets
-# and /api/contact as a Serverless Function
-server.js
-.env

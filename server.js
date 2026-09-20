@@ -14,7 +14,7 @@ const nodemailer = require("nodemailer");
 
 const PORT = parseInt(process.env.PORT || "8085", 10);
 const HOST = "0.0.0.0";
-const BASE_DIR = __dirname;
+const BASE_DIR = process.env.LAMBDA_TASK_ROOT || process.cwd() || __dirname;
 
 const MIME_TYPES = {
   ".html": "text/html; charset=UTF-8",
@@ -341,11 +341,40 @@ const server = http.createServer((req, res) => {
     safePath = "/index.html";
   }
 
-  const filePath = path.join(BASE_DIR, safePath);
+  // Strip leading slashes to prevent absolute root resolution issues on Linux/Vercel
+  const relativePath = safePath.replace(/^[\\\/]+/, "");
+
+  // Locate the file in candidate directories (BASE_DIR, process.cwd(), __dirname)
+  const candidateDirs = [BASE_DIR, process.cwd(), __dirname];
+  let filePath = path.join(BASE_DIR, relativePath);
+  for (const dir of candidateDirs) {
+    const candidate = path.join(dir, relativePath);
+    if (fs.existsSync(candidate)) {
+      filePath = candidate;
+      break;
+    }
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
-      const fallbackPath = path.join(BASE_DIR, "index.html");
+      const ext = path.extname(relativePath).toLowerCase();
+      // If a static asset (.css, .js, .png, etc.) was requested and not found, return 404
+      if (ext && ext !== ".html") {
+        res.writeHead(404, { "Content-Type": "text/plain; charset=UTF-8" });
+        res.end(`404 Not Found: ${relativePath}`);
+        return;
+      }
+
+      // Fallback to index.html for root or SPA navigation
+      let fallbackPath = path.join(BASE_DIR, "index.html");
+      for (const dir of candidateDirs) {
+        const candidate = path.join(dir, "index.html");
+        if (fs.existsSync(candidate)) {
+          fallbackPath = candidate;
+          break;
+        }
+      }
+
       fs.readFile(fallbackPath, (fallbackErr, content) => {
         if (fallbackErr) {
           res.writeHead(404, { "Content-Type": "text/plain; charset=UTF-8" });
@@ -370,7 +399,7 @@ const server = http.createServer((req, res) => {
 
       res.writeHead(200, {
         "Content-Type": contentType,
-        "Cache-Control": "no-cache",
+        "Cache-Control": ext === ".css" || ext === ".js" ? "public, max-age=86400" : "no-cache",
         "X-Content-Type-Options": "nosniff",
       });
       res.end(content);
@@ -378,25 +407,30 @@ const server = http.createServer((req, res) => {
   });
 });
 
-server.listen(PORT, HOST, () => {
-  console.log("\n============================================================");
-  console.log("   🚀 GloryTech Server with Nodemailer is Live!");
-  console.log("============================================================");
-  console.log(`   > Local URL:       http://localhost:${PORT}/`);
-  console.log(`   > Contact API:     http://localhost:${PORT}/api/contact`);
-  console.log(
-    `   > Delivery Inbox:  ${process.env.CONTACT_RECEIVER_EMAIL || "mohamedalnajjar204@gmail.com"}`,
-  );
-  console.log("============================================================\n");
-});
+// Export server for Vercel Serverless environment
+module.exports = server;
 
-server.on("error", (err) => {
-  if (err.code === "EADDRINUSE") {
-    console.error(
-      `\n[Error] Port ${PORT} is already in use. Trying port ${PORT + 1}...`,
+if (!process.env.VERCEL) {
+  server.listen(PORT, HOST, () => {
+    console.log("\n============================================================");
+    console.log("   🚀 GloryTech Server with Nodemailer is Live!");
+    console.log("============================================================");
+    console.log(`   > Local URL:       http://localhost:${PORT}/`);
+    console.log(`   > Contact API:     http://localhost:${PORT}/api/contact`);
+    console.log(
+      `   > Delivery Inbox:  ${process.env.CONTACT_RECEIVER_EMAIL || "mohamedalnajjar204@gmail.com"}`,
     );
-    server.listen(PORT + 1, HOST);
-  } else {
-    console.error("[Server Error]", err);
-  }
-});
+    console.log("============================================================\n");
+  });
+
+  server.on("error", (err) => {
+    if (err.code === "EADDRINUSE") {
+      console.error(
+        `\n[Error] Port ${PORT} is already in use. Trying port ${PORT + 1}...`,
+      );
+      server.listen(PORT + 1, HOST);
+    } else {
+      console.error("[Server Error]", err);
+    }
+  });
+}

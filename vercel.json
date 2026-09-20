@@ -1,6 +1,22 @@
 {
   "version": 2,
   "cleanUrls": true,
+  "functions": {
+    "server.js": {
+      "includeFiles": [
+        "css/**",
+        "js/**",
+        "assets/**",
+        "index.html",
+        "favicon.ico",
+        "robots.txt",
+        "sitemap.xml"
+      ]
+    },
+    "api/contact.js": {
+      "maxDuration": 15
+    }
+  },
   "headers": [
     {
       "source": "/css/(.*)",
@@ -11,7 +27,7 @@
         },
         {
           "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
+          "value": "public, max-age=86400"
         }
       ]
     },
