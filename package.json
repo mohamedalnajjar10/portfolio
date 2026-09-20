@@ -1,0 +1,26 @@
+{
+  "name": "glorytech-showcase-website",
+  "version": "1.0.0",
+  "description": "Production-ready service showcase website for GloryTech",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "turnkey",
+    "services",
+    "agency",
+    "custom-websites",
+    "mobile-apps",
+    "erp",
+    "ai-chatbots",
+    "modernization"
+  ],
+  "author": "GloryTech",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^18.0.1",
+    "nodemailer": "^10.0.10"
+  }
+}

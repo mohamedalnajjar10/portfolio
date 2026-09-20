@@ -1,516 +1,1419 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr" data-theme="dark">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Spydy Portfolio — Mohamed Al Najjar, backend developer crafting fast, secure and real-time systems." />
-  <meta name="theme-color" content="#0A0A0A" />
-  <title>Spydy Portfolio | Mohamed Al Najjar</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <!-- Spider-emoji favicon (no extra file needed) -->
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='90'%3E%F0%9F%95%B7%EF%B8%8F%3C/text%3E%3C/svg%3E" />
+  <!-- Primary SEO Meta Tags (Dynamically updated by i18n) -->
+  <title data-i18n-meta="title">GloryTech | Complete, Production-Ready Software &amp; Web Solutions</title>
+  <meta name="title" content="GloryTech | Complete, Production-Ready Software & Web Solutions">
+  <meta name="description" id="meta-description"
+    content="We build and deliver complete, professional, and ready-to-use software projects. Custom websites, mobile apps, ERP systems, AI chatbots, legacy modernization, and AI-site rescue.">
+  <meta name="keywords"
+    content="software development, turnkey software, custom websites, mobile apps, ERP systems, AI chatbots, legacy modernization, AI site rescue, software agency">
+  <meta name="author" content="GloryTech">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.glorytech.com/">
 
-  <!-- Google Fonts (only external font allowed) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet" />
+  <!-- Alternate hreflang annotations for SEO -->
+  <link rel="alternate" hreflang="en" href="https://www.glorytech.com/?lang=en">
+  <link rel="alternate" hreflang="ar" href="https://www.glorytech.com/?lang=ar">
+  <link rel="alternate" hreflang="x-default" href="https://www.glorytech.com/">
 
-  <link rel="stylesheet" href="style.css" />
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.glorytech.com/">
+  <meta property="og:title" id="og-title" content="GloryTech | Complete, Production-Ready Software Solutions">
+  <meta property="og:description" id="og-description"
+    content="We deliver complete, professional, and ready-to-use projects. No half-baked code, no endless delays. Turnkey software development with guaranteed SLAs.">
+  <meta property="og:image" content="https://www.glorytech.com/og-image.jpg">
+  <meta property="og:site_name" content="GloryTech">
 
-  <!--
-    Inline SVG fallback art.
-    If any /assets PNG is missing, `onerror` swaps in this stylized spider
-    silhouette so the layout stays identical. Drop the real PNGs into /assets
-    and the placeholders are never used.
-  -->
-  <script>
-    window.SPIDEY_ART = {
-      head: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"><g fill="none" stroke="#0A0A0A" stroke-width="9" stroke-linecap="round"><path d="M20 72 Q0 38 16 2M30 48 Q14 20 34 -6M42 24 Q34 -2 58 -14M62 2 Q62 -18 86 -24"/><path d="M180 72 Q200 38 184 2M170 48 Q186 20 166 -6M158 24 Q166 -2 142 -14M138 2 Q138 -18 114 -24"/></g><circle cx="100" cy="102" r="78" fill="#0A0A0A"/><ellipse cx="73" cy="100" rx="23" ry="30" fill="#FFFFFF"/><ellipse cx="127" cy="100" rx="23" ry="30" fill="#FFFFFF"/></svg>',
-      hero: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><g fill="none" stroke="#0A0A0A" stroke-width="14" stroke-linecap="round"><path d="M60 210 Q20 140 60 40M90 180 Q60 110 100 30M120 160 Q110 90 160 40M160 150 Q160 80 210 50"/><path d="M340 210 Q380 140 340 40M310 180 Q340 110 300 30M280 160 Q290 90 240 40M240 150 Q240 80 190 50"/></g><circle cx="200" cy="260" r="130" fill="#0A0A0A"/><ellipse cx="150" cy="255" rx="38" ry="48" fill="#FFFFFF"/><ellipse cx="250" cy="255" rx="38" ry="48" fill="#FFFFFF"/><path d="M120 420 Q200 380 280 420 L270 470 Q200 500 130 470 Z" fill="#0A0A0A"/></svg>',
-      stand: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><g fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round"><path d="M52 150 Q30 180 40 230M68 162 Q56 190 70 240M86 168 Q86 196 102 240M104 168 Q118 196 132 240M122 162 Q140 190 154 240M136 150 Q162 180 158 230"/></g><circle cx="100" cy="70" r="52" fill="#0A0A0A"/><ellipse cx="84" cy="72" rx="16" ry="21" fill="#FFFFFF"/><ellipse cx="116" cy="72" rx="16" ry="21" fill="#FFFFFF"/><path d="M62 120 Q100 100 138 120 L130 190 Q100 210 70 190 Z" fill="#0A0A0A"/></svg>',
-      hang: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300"><g transform="rotate(180 100 150)"><g fill="none" stroke="#0A0A0A" stroke-width="10" stroke-linecap="round"><path d="M52 150 Q30 180 40 230M68 162 Q56 190 70 240M86 168 Q86 196 102 240M104 168 Q118 196 132 240M122 162 Q140 190 154 240M136 150 Q162 180 158 230"/></g><circle cx="100" cy="70" r="52" fill="#0A0A0A"/><ellipse cx="84" cy="72" rx="16" ry="21" fill="#FFFFFF"/><ellipse cx="116" cy="72" rx="16" ry="21" fill="#FFFFFF"/><path d="M62 120 Q100 100 138 120 L130 190 Q100 210 70 190 Z" fill="#0A0A0A"/></g></svg>'
-    };
-    window.spideyFallback = function (kind, img) {
-      if (img.dataset.fb) return;
-      img.dataset.fb = "1";
-      img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(window.SPIDEY_ART[kind] || window.SPIDEY_ART.head);
-    };
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://www.glorytech.com/">
+  <meta name="twitter:title" content="GloryTech | Complete, Production-Ready Software Solutions">
+  <meta name="twitter:description"
+    content="We deliver complete, professional, and ready-to-use projects. Turnkey software development with guaranteed SLAs.">
+  <meta name="twitter:image" content="https://www.glorytech.com/og-image.jpg">
+
+  <!-- Typography: Plus Jakarta Sans, Inter, Cairo & IBM Plex Sans Arabic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Core Stylesheet -->
+  <link rel="stylesheet" href="styles.css?v=3.2">
+
+  <!-- Favicon via SVG Data URI -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><path d='M8 22L16 10L24 22H19L16 17L13 22H8Z' fill='%23F8FAFC'/><circle cx='16' cy='14' r='2' fill='%2310B981'/></svg>">
+
+  <!-- Structured Data: Organization & ProfessionalService JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.glorytech.com/#organization",
+        "name": "GloryTech",
+        "url": "https://www.glorytech.com/",
+        "logo": "https://www.glorytech.com/logo.png",
+        "description": "Premium software engineering firm delivering turnkey web, mobile, ERP, AI, and modernization solutions.",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+201228635405",
+          "contactType": "customer service",
+          "email": "mohamedalnajjar204@gmail.com",
+          "availableLanguage": ["English", "Arabic", "French", "Spanish"]
+        }
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.glorytech.com/#service",
+        "name": "GloryTech Software Services",
+        "url": "https://www.glorytech.com/",
+        "provider": {
+          "@id": "https://www.glorytech.com/#organization"
+        },
+        "priceRange": "$$$$",
+        "availableLanguage": ["en", "ar"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Software Engineering Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Websites & Web Applications"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Mobile Application Development"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Enterprise Resource Planning (ERP) Systems"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Intelligent Chatbots & Conversational AI"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "AI-Powered Websites & Search"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Optimization & Modernization of Legacy Sites"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Rescue & Upgrade of Underperforming AI-Generated Sites"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
   </script>
 </head>
 
 <body>
+  <!-- Accessibility: Skip Link -->
+  <a href="#main-content" class="skip-link" data-i18n="a11y.skipLink">Skip to main content</a>
 
-  <!-- ===== Decorative radial spider-webs (fixed, subtle parallax via GSAP) ===== -->
-  <svg class="web-deco web-tl" viewBox="0 0 400 400" fill="none" stroke="#CFC9BC" aria-hidden="true">
-    <g stroke-width="2">
-      <circle cx="0" cy="0" r="60"/><circle cx="0" cy="0" r="120"/><circle cx="0" cy="0" r="180"/>
-      <circle cx="0" cy="0" r="240"/><circle cx="0" cy="0" r="300"/>
-      <path d="M0 0 L400 0 M0 0 L346 200 M0 0 L200 346 M0 0 L0 400 M0 0 L-200 346 M0 0 L-346 200"/>
-    </g>
-  </svg>
-  <svg class="web-deco web-mr" viewBox="0 0 400 400" fill="none" stroke="#CFC9BC" aria-hidden="true">
-    <g stroke-width="2">
-      <circle cx="0" cy="0" r="70"/><circle cx="0" cy="0" r="140"/><circle cx="0" cy="0" r="210"/><circle cx="0" cy="0" r="280"/>
-      <path d="M0 0 L400 0 M0 0 L346 200 M0 0 L200 346 M0 0 L0 400 M0 0 L-200 346 M0 0 L-346 200"/>
-    </g>
-  </svg>
+  <!-- Accessibility: Polite Screen Reader Announcer for Language & Dynamic Changes -->
+  <div id="a11y-announcer" class="visually-hidden" aria-live="polite" aria-atomic="true"></div>
 
-  <!-- ===== Fixed black top navbar ===== -->
-  <header class="navbar" id="navbar">
-    <nav class="container nav-inner" aria-label="Main navigation">
-      <a href="#home" class="brand" aria-label="Back to top">
-        <!-- 🖼 imgs/13.jpg = small round logo image next to the name -->
-        <img class="brand-img" src="imgs/13.jpg" alt="" aria-hidden="true" />
-        <span>ALNAJJAR.</span>
+  <!-- ================================================================= -->
+  <!-- 1. STICKY NAVIGATION BAR & HEADER                                  -->
+  <!-- ================================================================= -->
+  <header class="site-header" id="site-header">
+    <div class="container header-container">
+      <!-- Brand Logo -->
+      <a href="#hero" class="brand-logo" aria-label="GloryTech Home">
+        <svg class="brand-mark" width="36" height="36" viewBox="0 0 36 36" fill="none"
+          xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect width="36" height="36" rx="10" fill="url(#logo-grad)" />
+          <path d="M10 25L18 11L26 25H20.5L18 19.5L15.5 25H10Z" fill="white" />
+          <circle cx="18" cy="15.5" r="2.2" fill="#10B981" />
+          <defs>
+            <linearGradient id="logo-grad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#2563EB" />
+              <stop offset="1" stop-color="#0284C7" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="brand-text"><bdi dir="ltr">GloryTech<span class="brand-dot">.</span></bdi></span>
       </a>
-      <ul class="nav-links">
-        <li><a class="nav-link" href="#about">ABOUT</a></li>
-        <li><a class="nav-link" href="#skills">SKILLS</a></li>
-        <li><a class="nav-link" href="#projects">PROJECTS</a></li>
-        <li><a class="nav-link" href="#contact">CONTACT</a></li>
-      </ul>
-    </nav>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <ul class="nav-list">
+          <li><a href="#why-us" class="nav-link" data-i18n="nav.whyUs">Why Us</a></li>
+          <li><a href="#services" class="nav-link" data-i18n="nav.services">Services</a></li>
+          <li><a href="#rescue-showcase" class="nav-link" data-i18n="nav.rescue">AI Rescue</a></li>
+          <li><a href="#process" class="nav-link" data-i18n="nav.process">Process</a></li>
+          <li><a href="#portfolio" class="nav-link" data-i18n="nav.portfolio">Portfolio</a></li>
+          <li><a href="#tech-stack" class="nav-link" data-i18n="nav.techStack">Tech Stack</a></li>
+          <li><a href="#pricing" class="nav-link" data-i18n="nav.pricing">Pricing</a></li>
+          <li><a href="#faq" class="nav-link" data-i18n="nav.faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Action Controls -->
+      <div class="header-actions">
+        <!-- Bilingual Language Toggle Button (EN / عربي) -->
+        <button type="button" class="lang-toggle-btn" id="lang-toggle" aria-label="تغيير اللغة إلى العربية"
+          data-i18n-aria-label="nav.langToggleLabel">
+          <svg class="icon-globe" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span class="lang-label" data-i18n="nav.langToggle"><bdi>عربي</bdi></span>
+        </button>
+
+        <!-- Theme Toggle Button (Dark / Light) -->
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to light theme"
+          data-i18n-aria-label="a11y.themeToggleDark" title="Toggle theme">
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Consultation CTA Button -->
+        <a href="#contact" class="btn btn-primary btn-sm header-cta">
+          <span data-i18n="nav.consultationCta">Get a Consultation</span>
+          <svg class="btn-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <!-- Mobile Hamburger Toggle -->
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-expanded="false"
+          aria-controls="mobile-nav-drawer" aria-label="Open mobile navigation menu"
+          data-i18n-aria-label="a11y.menuOpen">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Slide-In Navigation Drawer -->
+    <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" tabindex="-1"></div>
+    <div class="mobile-nav-drawer" id="mobile-nav-drawer" role="dialog" aria-modal="true"
+      aria-label="Mobile Navigation">
+      <div class="mobile-drawer-header">
+        <span class="brand-text"><bdi dir="ltr">GloryTech<span class="brand-dot">.</span></bdi></span>
+        <button type="button" class="drawer-close" id="drawer-close" aria-label="Close navigation menu"
+          data-i18n-aria-label="a11y.menuClose">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Language Switcher Inside Drawer -->
+      <div class="mobile-lang-bar">
+        <button type="button" class="lang-toggle-btn mobile-lang-btn" id="mobile-lang-toggle">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="2" y1="12" x2="22" y2="12"></line>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+          </svg>
+          <span class="lang-label" data-i18n="nav.langToggle"><bdi>عربي</bdi></span>
+        </button>
+      </div>
+
+      <nav class="mobile-nav" aria-label="Mobile navigation">
+        <ul class="mobile-nav-list">
+          <li><a href="#why-us" class="mobile-nav-link" data-i18n="nav.whyUs">Why Us</a></li>
+          <li><a href="#services" class="mobile-nav-link" data-i18n="nav.services">Services</a></li>
+          <li><a href="#rescue-showcase" class="mobile-nav-link" data-i18n="nav.rescue">AI Rescue Showcase</a></li>
+          <li><a href="#process" class="mobile-nav-link" data-i18n="nav.process">How We Deliver</a></li>
+          <li><a href="#portfolio" class="mobile-nav-link" data-i18n="nav.portfolio">Selected Work</a></li>
+          <li><a href="#tech-stack" class="mobile-nav-link" data-i18n="nav.techStack">Tech Stack</a></li>
+          <li><a href="#pricing" class="mobile-nav-link" data-i18n="nav.pricing">Engagement Models</a></li>
+          <li><a href="#faq" class="mobile-nav-link" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="#contact" class="mobile-nav-link mobile-nav-cta" data-i18n="nav.consultationCta">Get a
+              Consultation</a></li>
+        </ul>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <p class="drawer-contact-note" data-i18n="nav.drawerTagline">Ready to build without the risk?</p>
+        <a href="mailto:mohamedalnajjar204@gmail.com" class="drawer-email"><bdi
+            dir="ltr">mohamedalnajjar204@gmail.com</bdi></a>
+      </div>
+    </div>
   </header>
 
-  <main>
+  <!-- ================================================================= -->
+  <!-- MAIN CONTENT AREA                                                 -->
+  <!-- ================================================================= -->
+  <main id="main-content">
 
-    <!-- ================= 1) HERO ================= -->
-    <section id="home" class="hero section">
+    <!-- =============================================================== -->
+    <!-- 2. HERO SECTION                                                 -->
+    <!-- =============================================================== -->
+    <section class="hero-section" id="hero" aria-labelledby="hero-title">
+      <!-- Ambient Animated Canvas / Glowing Mesh Background -->
+      <div class="hero-ambient-glow" aria-hidden="true">
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-grid-overlay"></div>
+      </div>
+
+      <div class="container hero-container">
+        <!-- Eyebrow Badge -->
+        <div class="badge-wrapper reveal">
+          <span class="hero-badge">
+            <span class="badge-pulse"></span>
+            <span data-i18n="hero.badge">Turnkey Delivery &bull; Zero Half-Baked Code &bull; 100%
+              Production-Ready</span>
+          </span>
+        </div>
+
+        <!-- Main Headline -->
+        <h1 class="hero-title reveal" id="hero-title">
+          <span data-i18n="hero.titleLine1">We Build &amp; Deliver </span>
+          <span class="gradient-text" data-i18n="hero.titleHighlight">Complete, Professional, </span>
+          <span data-i18n="hero.titleLine2">and Ready-to-Use Software.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="hero-description reveal" data-i18n="hero.description">
+          No freelancer coordination headaches, no abandoned prototypes, and no generic AI code that breaks under load.
+          We engineer, test, deploy, and guarantee high-impact web platforms, mobile apps, ERPs, and automated systems
+          built to scale.
+        </p>
+
+        <!-- Dual Call to Action Buttons -->
+        <div class="hero-cta-group reveal">
+          <a href="#contact" class="btn btn-primary btn-lg">
+            <span data-i18n="hero.ctaConsultation">Get a Free Consultation</span>
+            <svg class="btn-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+          <a href="#portfolio" class="btn btn-secondary btn-lg">
+            <span data-i18n="hero.ctaPortfolio">View Our Work</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Key Trust Badges Strip -->
+        <div class="hero-trust-pills reveal">
+          <div class="trust-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span data-i18n="hero.trustTimelines">Guaranteed Fixed Timelines</span>
+          </div>
+          <div class="trust-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            <span data-i18n="hero.trustWarranty">90-Day Post-Launch SLA</span>
+          </div>
+          <div class="trust-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <span data-i18n="hero.trustOwnership">100% IP &amp; Code Ownership</span>
+          </div>
+        </div>
+
+        <!-- Live Animated Stat Counters -->
+        <div class="hero-stats-grid reveal" role="region" aria-label="Key delivery metrics">
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-counter" data-target="140">0</span><span class="stat-suffix"
+                data-i18n="hero.stat1Suffix">+</span>
+            </div>
+            <p class="stat-label" data-i18n="hero.stat1Label">Projects Delivered Turnkey</p>
+            <span class="stat-sub" data-i18n="hero.stat1Sub">From concept to production</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-counter" data-target="99" data-decimals="1" data-val="99.8">0</span><span
+                class="stat-suffix" data-i18n="hero.stat2Suffix">%</span>
+            </div>
+            <p class="stat-label" data-i18n="hero.stat2Label">On-Time Delivery Rate</p>
+            <span class="stat-sub" data-i18n="hero.stat2Sub">Contractual SLA compliance</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-counter" data-target="15">0</span><span class="stat-suffix"
+                data-i18n="hero.stat3Suffix">m</span>
+            </div>
+            <p class="stat-label" data-i18n="hero.stat3Label">Avg. Response Time</p>
+            <span class="stat-sub" data-i18n="hero.stat3Sub">Direct engineer Slack access</span>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number-wrap">
+              <span class="stat-counter" data-target="100">0</span><span class="stat-suffix"
+                data-i18n="hero.stat4Suffix">%</span>
+            </div>
+            <p class="stat-label" data-i18n="hero.stat4Label">Source Code Transfer</p>
+            <span class="stat-sub" data-i18n="hero.stat4Sub">Zero vendor lock-in</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 3. "WHY US" / TRUST STRIP SECTION                               -->
+    <!-- =============================================================== -->
+    <section class="section why-us-section" id="why-us" aria-labelledby="why-us-title">
       <div class="container">
-        <div class="hero-figure">
-          <div class="reveal-stack" id="revealStack">
-            <!-- 🖼 imgs/16.jpg = Spider-Man art, base layer, shown in its entirety -->
-            <img class="mask" src="imgs/16.jpg" alt="Spider-Man mask artwork" onerror="window.spideyFallback('hero', this)" />
-            <!-- 🖼 imgs/14.jpg = your real photo, rendered inside the SVG and
-                 clipped to a circle that follows the cursor (app.js moves the
-                 #reveal-spot circle). Only the part under the cursor shows. -->
-            <svg class="photo-svg" viewBox="0 0 400 500" aria-hidden="true">
-              <defs>
-                <clipPath id="reveal-clip">
-                  <circle id="reveal-spot" cx="200" cy="250" r="0" />
-                </clipPath>
-              </defs>
-              <image href="imgs/14.jpg" x="0" y="0" width="400" height="500"
-                     preserveAspectRatio="xMidYMid slice" clip-path="url(#reveal-clip)" />
-            </svg>
-          </div>
-          <p class="hero-hint">hover to reveal 👀</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 2) CROSSED MARQUEE RIBBONS (pure CSS animation) ================= -->
-    <section class="marquee-band" aria-hidden="true">
-      <div class="ribbon ribbon-red">
-        <div class="ribbon-track">
-          <div class="ribbon-group">
-            <span class="ribbon-item">BACKEND DEVELOPER</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">RESTFUL APIS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">LARAVEL</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">DATABASE DESIGN</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">JWT &amp; SECURITY</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">CLEAN CODE</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-          </div>
-          <div class="ribbon-group">
-            <span class="ribbon-item">BACKEND DEVELOPER</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">RESTFUL APIS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">LARAVEL</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">DATABASE DESIGN</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">JWT &amp; SECURITY</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">CLEAN CODE</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-          </div>
-        </div>
-      </div>
-      <div class="ribbon ribbon-black">
-        <div class="ribbon-track">
-          <div class="ribbon-group">
-            <span class="ribbon-item">BACKEND DEVELOPER</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">RESTFUL APIS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">LARAVEL</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">DATABASE DESIGN</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">JWT &amp; SECURITY</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">CLEAN CODE</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-          </div>
-          <div class="ribbon-group">
-            <span class="ribbon-item">BACKEND DEVELOPER</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">RESTFUL APIS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">NODE.JS &amp; NEST.JS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">LARAVEL</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">DATABASE DESIGN</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">REAL-TIME SYSTEMS</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">JWT &amp; SECURITY</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-            <span class="ribbon-item">CLEAN CODE</span>
-            <img class="ribbon-head" src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 3) ABOUT ================= -->
-    <section id="about" class="section">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <p class="section-label">🕷 BEHIND THE MASK</p>
-          <h2 class="section-title">MOHAMED AL NAJJAR.</h2>
-        </header>
-        <div class="about-grid">
-          <div class="about-copy" data-reveal>
-            <p>Results-driven Backend Developer with 2+ years of experience building scalable RESTful APIs and backend systems using Node.js, Express.js, Nest.js and Laravel. Proven expertise in database design with MySQL, PostgreSQL, and MongoDB, implementing secure authentication with JWT, and real-time communication using WebSocket and Socket.io.</p>
-            <p>Strong focus on clean code architecture, comprehensive testing, and agile development methodologies. Demonstrated ability to optimize system performance, achieving up to 45% improvement in query response times and supporting 1,800+ concurrent users with 99.7% uptime.</p>
-            <h3 class="chip-title">PRIMARY TECH STACK</h3>
-            <div class="chips">
-              <span class="chip">JavaScript</span><span class="chip">TypeScript</span>
-              <span class="chip">Node.js</span><span class="chip">Express.js</span>
-              <span class="chip">NestJS</span><span class="chip">Laravel</span>
-              <span class="chip">MySQL</span><span class="chip">PostgreSQL</span>
-              <span class="chip">MongoDB</span><span class="chip">Prisma</span>
-              <span class="chip">Docker</span><span class="chip">WebSocket</span>
-            </div>
-          </div>
-          <div class="about-figure" data-reveal>
-            <!-- Circular photo hangs from a web thread and swings (CSS keyframes) -->
-            <div class="thread"></div>
-            <div class="swing-wrap">
-              <!-- 🖼 imgs/14.jpg = same real photo as the hero (square crop works best here) -->
-              <img class="circle-photo" src="imgs/14.jpg" alt="Portrait of Mohamed Al Najjar" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 4) SKILLS ================= -->
-    <section id="skills" class="section">
-      <div class="container skills-wrap">
-        <header class="section-head" data-reveal>
-          <p class="section-label">ARSENAL &amp; EXPERTISE</p>
-          <h2 class="section-title">TECHNICAL SKILLS.</h2>
-        </header>
-
-        <!-- Small spider hanging from a web thread on the right edge -->
-        <div class="hanging-spider" aria-hidden="true">
-          <div class="thread"></div>
-          <img src="imgs/13.jpg" alt="" onerror="window.spideyFallback('head', this)" />
-        </div>
-
-        <div class="skills-grid">
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">JAVASCRIPT &amp; TYPESCRIPT</h3>
-              <p class="skill-sub">PROGRAMMING LANGUAGES</p>
-            </div>
-            <span class="skill-level">EXPERT</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">NODE.JS &amp; EXPRESS.JS</h3>
-              <p class="skill-sub">BACKEND FRAMEWORKS</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">NEST.JS</h3>
-              <p class="skill-sub">ENTERPRISE ARCHITECTURE</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">LARAVEL &amp; PHP</h3>
-              <p class="skill-sub">BACKEND FRAMEWORKS</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">MYSQL / POSTGRESQL / MONGODB</h3>
-              <p class="skill-sub">DATABASE DESIGN</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">PRISMA, SEQUELIZE &amp; TYPEORM</h3>
-              <p class="skill-sub">ORMS</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">JWT, OAUTH &amp; RBAC</h3>
-              <p class="skill-sub">AUTH &amp; SECURITY</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">WEBSOCKET &amp; SOCKET.IO</h3>
-              <p class="skill-sub">REAL-TIME SYSTEMS</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">JEST, UNIT &amp; INTEGRATION TESTING</h3>
-              <p class="skill-sub">QUALITY</p>
-            </div>
-            <span class="skill-level">PROFICIENT</span>
-          </article>
-
-          <article class="skill-card">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">DOCKER, GIT, GITHUB, POSTMAN, SWAGGER</h3>
-              <p class="skill-sub">TOOLS &amp; DEVOPS</p>
-            </div>
-            <span class="skill-level">PROFICIENT</span>
-          </article>
-
-          <article class="skill-card wide">
-            <svg class="spider-bullet" viewBox="0 0 24 24" aria-hidden="true">
-              <g fill="none" stroke="#E62429" stroke-width="1.8" stroke-linecap="round">
-                <path d="M6 8 L1 3 M8 7 L5 1 M10 6.5 L9 0 M12 6 L12 0 M14 6.5 L15 0 M16 7 L19 1 M18 8 L23 3"/>
-                <path d="M6 15 L1 20 M8 16 L5 22 M10 17 L9 24 M12 18 L12 24 M14 17 L15 24 M16 16 L19 22 M18 15 L23 20"/>
-              </g>
-              <circle cx="12" cy="12" r="4.5" fill="#E62429"/>
-            </svg>
-            <div class="skill-mid">
-              <h3 class="skill-title">RESTFUL API DESIGN &amp; GRAPHQL</h3>
-              <p class="skill-sub">DEVELOPMENT PRACTICES</p>
-            </div>
-            <span class="skill-level">ADVANCED</span>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 5) PROJECTS ================= -->
-    <section id="projects" class="section">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <p class="section-label">FEATURED WORKS</p>
-          <h2 class="section-title">PROJECTS.</h2>
-        </header>
-        <div class="projects-layout" data-reveal>
-          <!-- Standing Spider-Man figure on the left of the grid (imgs/16.jpg reused) -->
-          <img class="spidy-stand" src="imgs/16.jpg" alt="" aria-hidden="true" onerror="window.spideyFallback('stand', this)" />
-          <!-- Cards are rendered from the PROJECTS data in app.js -->
-          <div id="projects-grid" class="projects-grid"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 6) EDUCATION & CERTIFICATIONS ================= -->
-    <section id="education" class="section">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <p class="section-label">THE ORIGIN STORY</p>
-          <h2 class="section-title">EDUCATION &amp; CERTIFICATIONS.</h2>
-        </header>
-
-        <div class="edu-card" data-reveal>
-          <div class="edu-icon" aria-hidden="true">🎓</div>
-          <div>
-            <h3 class="edu-degree">BACHELOR'S DEGREE IN SOFTWARE ENGINEERING</h3>
-            <p class="edu-school">Al Azhar University — Gaza, Palestine</p>
-            <span class="date-badge edu-years">2020 – 2026</span>
-          </div>
-        </div>
-
-        <h3 class="chip-title" data-reveal>CERTIFICATIONS</h3>
-        <div class="cert-chips">
-          <span class="cert-chip">🕷 <span>Node.js Application Developer</span><em>2024</em></span>
-          <span class="cert-chip">🕷 <span>Nest.js Application Developer</span><em>2024</em></span>
-          <span class="cert-chip">🕷 <span>Understanding SDLC, System Requirements, Agile, Scrum and Jira</span><em>2025</em></span>
-          <span class="cert-chip">🕷 <span>Docker Practical Course</span><em>2026</em></span>
-          <span class="cert-chip">🕷 <span>GitLab CI/CD</span><em>2026</em></span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= 7) CONTACT ================= -->
-    <section id="contact" class="section">
-      <div class="container">
-        <header class="section-head" data-reveal>
-          <p class="section-label">🕷 GET IN TOUCH</p>
-          <h2 class="section-title">CONTACT.</h2>
-        </header>
-
-        <div class="contact-grid">
-          <form id="contact-form" class="contact-card" data-reveal novalidate>
-            <div class="field">
-              <label for="form-name">YOUR NAME</label>
-              <input id="form-name" name="name" type="text" placeholder="Peter Parker" required />
-            </div>
-            <div class="field">
-              <label for="form-email">YOUR EMAIL</label>
-              <input id="form-email" name="email" type="email" placeholder="parker@daily.com" required />
-            </div>
-            <div class="field">
-              <label for="form-message">MESSAGE</label>
-              <textarea id="form-message" name="message" rows="5" placeholder="Let's build something amazing together..." required></textarea>
-            </div>
-            <button class="btn btn-red btn-send" type="submit">SEND MESSAGE</button>
-          </form>
-
-          <div class="contact-figure" data-reveal>
-            <div class="thread"></div>
-            <!-- 🖼 imgs/15.jpg = hanging Spider-Man in the contact section.
-                 If the image is upright instead of upside-down, add `transform: rotate(180deg);` to .spidy-hang in style.css -->
-            <img class="spidy-hang" src="imgs/15.jpg" alt="" aria-hidden="true" onerror="window.spideyFallback('hang', this)" />
-          </div>
-        </div>
-
-        <div class="contact-bottom" data-reveal>
-          <p class="contact-row">
-            <span>📍 Egypt</span><span class="dot">•</span>
-            <span>📞 +20 122 863 5405</span><span class="dot">•</span>
-            <span>✉ mohamedalnajjar1000@gmail.com</span>
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="whyUs.eyebrow">The Delivery Advantage</span>
+          <h2 class="section-title" id="why-us-title" data-i18n="whyUs.title">Why Businesses Choose Us Over Freelancer
+            Marketplaces</h2>
+          <p class="section-subtitle" data-i18n="whyUs.subtitle">
+            Hiring random freelancers often leads to ghosting, misaligned code, and incomplete products. We act as your
+            dedicated, enterprise-grade engineering department with accountability baked into every sprint.
           </p>
-          <div class="contact-btns">
-            <a class="btn btn-dark" href="https://www.linkedin.com/in/mohamedalnajjar10/" target="_blank" rel="noopener">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.24 8.31h4.52V23H.24V8.31zM8.34 8.31h4.33v2h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.01 5.42 6.93V23h-4.51v-7.18c0-1.71-.03-3.91-2.38-3.91-2.39 0-2.75 1.86-2.75 3.79V23H8.34V8.31z"/>
+        </div>
+
+        <div class="features-grid" id="why-us-grid">
+          <!-- Rendered dynamically or hydrated with data-i18n attributes -->
+          <article class="feature-card reveal" data-card-index="0">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="20 6 9 17 4 12"></polyline>
               </svg>
-              LINKEDIN
-            </a>
-            <a class="btn btn-dark" href="https://github.com/mohamedalnajjar10/" target="_blank" rel="noopener">
-              <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.53-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11.05 11.05 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.41-2.69 5.38-5.25 5.67.41.35.77 1.05.77 2.12v3.15c0 .3.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+            </div>
+            <h3 class="feature-title" data-i18n="whyUs.cards.0.title">End-to-End Turnkey Delivery</h3>
+            <p class="feature-text" data-i18n="whyUs.cards.0.text">We never hand over half-finished Git repositories or
+              unconfigured databases. We configure domains, SSL, automated CI/CD pipelines, monitoring, and staging
+              environments so your project is truly ready to use on day one.</p>
+            <div class="feature-tag" data-i18n="whyUs.cards.0.tag">Turnkey Guarantee</div>
+          </article>
+
+          <article class="feature-card reveal" data-card-index="1">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
               </svg>
-              GITHUB
-            </a>
+            </div>
+            <h3 class="feature-title" data-i18n="whyUs.cards.1.title">Guaranteed Fixed Timelines</h3>
+            <p class="feature-text" data-i18n="whyUs.cards.1.text">Every project comes with an unambiguous,
+              milestone-based timeline. We scope requirements down to the sprint level, providing weekly live demos and
+              strictly honoring your commercial launch commitments.</p>
+            <div class="feature-tag" data-i18n="whyUs.cards.1.tag">Predictable Schedule</div>
+          </article>
+
+          <article class="feature-card reveal" data-card-index="2">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title" data-i18n="whyUs.cards.2.title">90-Day Post-Launch SLA Warranty</h3>
+            <p class="feature-text" data-i18n="whyUs.cards.2.text">We don't disappear after the final invoice. Every
+              deliverable includes 90 days of complimentary bug-fixing, telemetry monitoring, server health checks, and
+              minor configuration adjustments.</p>
+            <div class="feature-tag" data-i18n="whyUs.cards.2.tag">Post-Launch Security</div>
+          </article>
+
+          <article class="feature-card reveal" data-card-index="3">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="12" y1="1" x2="12" y2="23"></line>
+                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title" data-i18n="whyUs.cards.3.title">Transparent Milestone Pricing</h3>
+            <p class="feature-text" data-i18n="whyUs.cards.3.text">No surprise hourly overages or unexpected bills. You
+              approve clear deliverable checkpoints before releasing funds, ensuring complete budgetary control and
+              absolute peace of mind.</p>
+            <div class="feature-tag" data-i18n="whyUs.cards.3.tag">No Hidden Fees</div>
+          </article>
+
+          <article class="feature-card reveal" data-card-index="4">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title" data-i18n="whyUs.cards.4.title">Dedicated Senior Engineering Team</h3>
+            <p class="feature-text" data-i18n="whyUs.cards.4.text">You collaborate directly with senior full-stack
+              architects and experienced product designers — not junior subcontractors or account managers who don't
+              understand code.</p>
+            <div class="feature-tag" data-i18n="whyUs.cards.4.tag">Direct Access</div>
+          </article>
+
+          <article class="feature-card reveal" data-card-index="5">
+            <div class="feature-icon-box">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </div>
+            <h3 class="feature-title" data-i18n="whyUs.cards.5.title">100% IP &amp; Infrastructure Ownership</h3>
+            <p class="feature-text" data-i18n="whyUs.cards.5.text">All source code, design files, deployment scripts,
+              Docker containers, and cloud infrastructure keys belong 100% to your company from day one. Zero
+              proprietary lock-in.</p>
+            <div class="feature-tag" data-i18n="whyUs.cards.5.tag">Total Independence</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 4. SERVICES SHOWCASE SECTION (7 DEDICATED CARDS)                -->
+    <!-- =============================================================== -->
+    <section class="section services-section" id="services" aria-labelledby="services-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="services.eyebrow">End-to-End Capabilities</span>
+          <h2 class="section-title" id="services-title" data-i18n="services.title">Comprehensive Engineering Services
+          </h2>
+          <p class="section-subtitle" data-i18n="services.subtitle">
+            Every service is executed with a relentless focus on stability, velocity, and user conversion. Explore our 7
+            core capabilities.
+          </p>
+        </div>
+
+        <div class="services-grid" id="services-grid-container">
+          <!-- Rendered dynamically with i18n support in script.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 5. LEGACY & AI-RESCUE SHOWCASE (BEFORE/AFTER SLIDER)            -->
+    <!-- =============================================================== -->
+    <section class="section rescue-showcase-section" id="rescue-showcase" aria-labelledby="rescue-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="rescue.eyebrow">Visual Proof</span>
+          <h2 class="section-title" id="rescue-title" data-i18n="rescue.title">Before &amp; After: AI Prototype vs.
+            Production Reality</h2>
+          <p class="section-subtitle" data-i18n="rescue.subtitle">
+            Slide horizontally to see how we rescue generic, underperforming AI code and convert it into
+            high-converting, compliant, enterprise-grade software.
+          </p>
+        </div>
+
+        <!-- Interactive Comparison Slider Container -->
+        <div class="comparison-wrapper reveal" id="comparison-slider">
+          <div class="comparison-container" tabindex="0" role="region"
+            aria-label="Interactive before and after comparison slider." data-i18n-aria-label="a11y.sliderRegion"
+            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+
+            <!-- BEFORE VIEW: Generic AI / Broken Code -->
+            <div class="comparison-side comparison-before">
+              <div class="side-tag before-tag" data-i18n="rescue.beforeTag">BEFORE: Generic AI Output</div>
+
+              <div class="mockup-content mockup-before">
+                <div class="mockup-browser-bar">
+                  <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+                  <span class="mockup-url"><bdi dir="ltr">http://unoptimized-ai-app.internal:3000 (Error
+                      429)</bdi></span>
+                </div>
+                <div class="mockup-body mockup-body-before">
+                  <div class="ai-warning-box">
+                    <span data-i18n="rescue.beforeWarning">⚠️ 4.9s Load Time &bull; 24 Lint Errors &bull; Broken Mobile
+                      Breakpoint</span>
+                  </div>
+                  <div class="ai-bad-hero">
+                    <div class="ai-bad-title" data-i18n="rescue.beforeTitle">WELCOME TO BEST AI SOLUTIONS PLATFORM CORP
+                    </div>
+                    <p class="ai-bad-p" data-i18n="rescue.beforeP">Leverage synergistic paradigms with our automated
+                      intelligent next-gen tools that utilize hyper-personalized algorithmic capabilities for your
+                      company.</p>
+                    <div class="ai-bad-btn-wrap">
+                      <button class="ai-bad-btn" data-i18n="rescue.beforeBtn">CLICK HERE NOW</button>
+                    </div>
+                  </div>
+                  <div class="ai-bad-metrics-grid">
+                    <div class="ai-metric-bad">
+                      <span class="bad-stat"><bdi dir="ltr">31/100</bdi></span>
+                      <span class="bad-name">Lighthouse SEO</span>
+                    </div>
+                    <div class="ai-metric-bad">
+                      <span class="bad-stat"><bdi dir="ltr">5.2s</bdi></span>
+                      <span class="bad-name">LCP (Slow)</span>
+                    </div>
+                    <div class="ai-metric-bad">
+                      <span class="bad-stat"><bdi dir="ltr">14 WCAG</bdi></span>
+                      <span class="bad-name">Contrast Failures</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- AFTER VIEW: Production Ready GloryTech Delivery -->
+            <div class="comparison-side comparison-after" id="comparison-after-view">
+              <div class="side-tag after-tag" data-i18n="rescue.afterTag">AFTER: GloryTech Turnkey Delivery</div>
+
+              <div class="mockup-content mockup-after">
+                <div class="mockup-browser-bar">
+                  <span class="dot-red"></span><span class="dot-yellow"></span><span class="dot-green"></span>
+                  <span class="mockup-url"><bdi dir="ltr">https://platform.clientdomain.com (HTTP/3 • SSL
+                      Secured)</bdi></span>
+                </div>
+                <div class="mockup-body mockup-body-after">
+                  <div class="prod-badge-box">
+                    <span data-i18n="rescue.afterBadge">✅ 0.35s LCP &bull; Zero Errors &bull; WCAG 2.1 AA Certified
+                      &bull; 90-Day SLA</span>
+                  </div>
+                  <div class="prod-good-hero">
+                    <span class="prod-good-kicker" data-i18n="rescue.afterKicker">Enterprise SaaS Platform</span>
+                    <div class="prod-good-title" data-i18n="rescue.afterTitle">Automate Complex Operations With Zero
+                      Friction.</div>
+                    <p class="prod-good-p" data-i18n="rescue.afterP">Deploy turnkey automated workflows in days. Built
+                      on clean modular TypeScript, sub-second responses, and guaranteed SLAs.</p>
+                    <div class="prod-good-actions">
+                      <button class="prod-good-btn" data-i18n="rescue.afterBtnPrimary">Start Free Trial &rarr;</button>
+                      <button class="prod-good-btn-ghost" data-i18n="rescue.afterBtnGhost">Schedule Demo</button>
+                    </div>
+                  </div>
+                  <div class="prod-good-metrics-grid">
+                    <div class="prod-metric-good">
+                      <span class="good-stat"><bdi dir="ltr">99/100</bdi></span>
+                      <span class="good-name" data-i18n="rescue.statLighthouse">Lighthouse Score</span>
+                    </div>
+                    <div class="prod-metric-good">
+                      <span class="good-stat"><bdi dir="ltr">0.35s</bdi></span>
+                      <span class="good-name" data-i18n="rescue.statLcp">Global TTFB</span>
+                    </div>
+                    <div class="prod-metric-good">
+                      <span class="good-stat"><bdi dir="ltr">+340%</bdi></span>
+                      <span class="good-name" data-i18n="rescue.statConversion">Conversion Rate</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slider Divider Handle -->
+            <div class="comparison-handle" id="comparison-handle" aria-hidden="true">
+              <div class="handle-line"></div>
+              <div class="handle-circle">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                  <polyline points="9 18 3 12 9 6"></polyline>
+                </svg>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                  <polyline points="15 18 21 12 15 6"></polyline>
+                </svg>
+              </div>
+              <div class="handle-line"></div>
+            </div>
+
+            <!-- Accessible Native Range Control for Screen Readers / Fallback -->
+            <label for="slider-range-input" class="visually-hidden" data-i18n="a11y.sliderRangeLabel">Comparison slider
+              position</label>
+            <input type="range" min="0" max="100" value="50" class="slider-native-range" id="slider-range-input"
+              aria-label="Comparison slider percentage" data-i18n-aria-label="a11y.sliderRangeLabel">
+          </div>
+
+          <!-- Feature Comparison Matrix Row -->
+          <div class="comparison-metrics-strip">
+            <div class="strip-metric">
+              <span class="strip-label" data-i18n="rescue.stripMetric1">Initial Load Time</span>
+              <div class="strip-bars">
+                <div class="strip-bar-before" data-i18n="rescue.stripBefore1">Before: 4.9s</div>
+                <div class="strip-bar-after" data-i18n="rescue.stripAfter1">After: 0.35s (-93%)</div>
+              </div>
+            </div>
+            <div class="strip-metric">
+              <span class="strip-label" data-i18n="rescue.stripMetric2">Mobile Usability</span>
+              <div class="strip-bars">
+                <div class="strip-bar-before" data-i18n="rescue.stripBefore2">Before: Fails Core Web Vitals</div>
+                <div class="strip-bar-after" data-i18n="rescue.stripAfter2">After: 100% Fluid &amp; Accessible</div>
+              </div>
+            </div>
+            <div class="strip-metric">
+              <span class="strip-label" data-i18n="rescue.stripMetric3">Architecture</span>
+              <div class="strip-bars">
+                <div class="strip-bar-before" data-i18n="rescue.stripBefore3">Before: Vibe-coded spaghetti</div>
+                <div class="strip-bar-after" data-i18n="rescue.stripAfter3">After: Documented &amp; Tested</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- =============================================================== -->
+    <!-- 6. DELIVERY PROCESS SECTION ("HOW WE DELIVER")                  -->
+    <!-- =============================================================== -->
+    <section class="section process-section" id="process" aria-labelledby="process-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="process.eyebrow">Structured Execution</span>
+          <h2 class="section-title" id="process-title" data-i18n="process.title">How We Deliver: A 5-Step Turnkey
+            Framework</h2>
+          <p class="section-subtitle" data-i18n="process.subtitle">
+            No guesswork, no missed deadlines. We follow an engineered, sprint-based delivery cycle where every
+            milestone is verified before we proceed.
+          </p>
+        </div>
+
+        <div class="process-timeline" id="process-timeline-container">
+          <!-- Rendered dynamically by script.js using process.steps -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 7. FILTERABLE PORTFOLIO / CASE STUDIES                          -->
+    <!-- =============================================================== -->
+    <section class="section portfolio-section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="portfolio.eyebrow">Proven Results</span>
+          <h2 class="section-title" id="portfolio-title" data-i18n="portfolio.title">Selected Case Studies &amp; Turnkey
+            Deliveries</h2>
+          <p class="section-subtitle" data-i18n="portfolio.subtitle">
+            Real client transformations delivered on schedule and within budget. Filter by service category to explore
+            the details.
+          </p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="portfolio-filter-bar reveal" role="tablist" aria-label="Filter case studies by category">
+          <button type="button" class="filter-btn active" data-filter="all" role="tab" aria-selected="true"
+            data-i18n="portfolio.filters.all">All Projects (6)</button>
+          <button type="button" class="filter-btn" data-filter="websites" role="tab" aria-selected="false"
+            data-i18n="portfolio.filters.websites">Websites</button>
+          <button type="button" class="filter-btn" data-filter="mobile" role="tab" aria-selected="false"
+            data-i18n="portfolio.filters.mobile">Mobile Apps</button>
+          <button type="button" class="filter-btn" data-filter="erp" role="tab" aria-selected="false"
+            data-i18n="portfolio.filters.erp">ERP Systems</button>
+          <button type="button" class="filter-btn" data-filter="ai-bots" role="tab" aria-selected="false"
+            data-i18n="portfolio.filters.aiBots">AI &amp; Chatbots</button>
+          <button type="button" class="filter-btn" data-filter="rescue" role="tab" aria-selected="false"
+            data-i18n="portfolio.filters.rescue">Modernization &amp; Rescue</button>
+        </div>
+
+        <!-- Case Studies Grid -->
+        <div class="portfolio-grid" id="portfolio-grid-container">
+          <!-- Rendered dynamically by script.js with full i18n support -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 8. TECHNOLOGY STACK BADGES SECTION                              -->
+    <!-- =============================================================== -->
+    <section class="section tech-stack-section" id="tech-stack" aria-labelledby="tech-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="techStack.eyebrow">Enterprise Foundations</span>
+          <h2 class="section-title" id="tech-title" data-i18n="techStack.title">Our Battle-Tested Technology Stack</h2>
+          <p class="section-subtitle" data-i18n="techStack.subtitle">
+            We don't chase every fleeting trend. We build with stable, high-performance, and maintainable technologies
+            trusted by global enterprise leaders.
+          </p>
+        </div>
+
+        <div class="stack-categories-grid">
+
+          <!-- Category 1: Frontend & UI -->
+          <div class="stack-cat-card reveal">
+            <h3 class="stack-cat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span data-i18n="techStack.cat1">Frontend &amp; Architecture</span>
+            </h3>
+            <div class="chips-wrap">
+              <span class="badge-chip"><bdi dir="ltr">Modern Vanilla ES6+</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">TypeScript</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">React / Next.js</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Vue.js</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Vanilla CSS3 / Tokens</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">HTML5 / WCAG 2.1 AA</bdi></span>
+            </div>
+          </div>
+
+          <!-- Category 2: Backend & APIs -->
+          <div class="stack-cat-card reveal">
+            <h3 class="stack-cat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                <line x1="6" y1="18" x2="6.01" y2="18"></line>
+              </svg>
+              <span data-i18n="techStack.cat2">Backend &amp; Microservices</span>
+            </h3>
+            <div class="chips-wrap">
+              <span class="badge-chip"><bdi dir="ltr">Node.js / Express</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Fastify</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Python / FastAPI</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Go (Golang)</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">REST &amp; GraphQL APIs</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">gRPC Services</bdi></span>
+            </div>
+          </div>
+
+          <!-- Category 3: Mobile -->
+          <div class="stack-cat-card reveal">
+            <h3 class="stack-cat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+              <span data-i18n="techStack.cat3">Mobile Platforms</span>
+            </h3>
+            <div class="chips-wrap">
+              <span class="badge-chip"><bdi dir="ltr">React Native</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Flutter</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">iOS (Swift)</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Android (Kotlin)</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Expo Bare Workflow</bdi></span>
+            </div>
+          </div>
+
+          <!-- Category 4: Cloud & DevOps -->
+          <div class="stack-cat-card reveal">
+            <h3 class="stack-cat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+              </svg>
+              <span data-i18n="techStack.cat4">Cloud &amp; DevOps</span>
+            </h3>
+            <div class="chips-wrap">
+              <span class="badge-chip"><bdi dir="ltr">AWS (ECS, S3, RDS)</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Docker &amp; Containers</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Cloudflare Edge</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">GitHub Actions CI/CD</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Terraform</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Kubernetes</bdi></span>
+            </div>
+          </div>
+
+          <!-- Category 5: AI & Data -->
+          <div class="stack-cat-card reveal">
+            <h3 class="stack-cat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path
+                  d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+                </path>
+              </svg>
+              <span data-i18n="techStack.cat5">AI, Databases &amp; Search</span>
+            </h3>
+            <div class="chips-wrap">
+              <span class="badge-chip"><bdi dir="ltr">PostgreSQL &amp; pgvector</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Redis &amp; Caching</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">OpenAI API / Claude</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">LangChain &amp; LlamaIndex</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">WhatsApp Cloud API</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Elasticsearch</bdi></span>
+            </div>
+          </div>
+
+          <!-- Category 6: QA & Security -->
+          <div class="stack-cat-card reveal">
+            <h3 class="stack-cat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+              <span data-i18n="techStack.cat6">QA, Security &amp; Monitoring</span>
+            </h3>
+            <div class="chips-wrap">
+              <span class="badge-chip"><bdi dir="ltr">Playwright &amp; Cypress</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Jest &amp; Vitest</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Sentry Error Tracking</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Datadog APM</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">OWASP Dependency Check</bdi></span>
+              <span class="badge-chip"><bdi dir="ltr">Postman API Testing</bdi></span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 9. CLIENT TESTIMONIALS CAROUSEL                                 -->
+    <!-- =============================================================== -->
+    <section class="section testimonials-section" id="testimonials" aria-labelledby="testimonials-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="testimonials.eyebrow">Client Feedback</span>
+          <h2 class="section-title" id="testimonials-title" data-i18n="testimonials.title">Trusted by Founders, CTOs
+            &amp; Product Leaders</h2>
+          <p class="section-subtitle" data-i18n="testimonials.subtitle">
+            Here is what engineering leaders and business operators say about our complete, turnkey delivery
+            commitments.
+          </p>
+        </div>
+
+        <!-- Accessible Testimonial Slider Wrapper -->
+        <div class="testimonial-slider-wrapper reveal" id="testimonial-slider">
+          <div class="testimonial-track-container">
+            <div class="testimonial-track" id="testimonial-track" aria-live="polite">
+              <!-- Rendered dynamically by script.js with full i18n support -->
+            </div>
+          </div>
+
+          <!-- Slider Controls -->
+          <div class="testimonial-controls">
+            <button type="button" class="slider-btn prev-btn" id="slider-prev" aria-label="Previous testimonial slide"
+              data-i18n-aria-label="a11y.prevSlide">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+            <div class="slider-dots" id="slider-dots" role="tablist" aria-label="Testimonial navigation dots"
+              data-i18n-aria-label="a11y.sliderDotsLabel">
+              <!-- Dots rendered dynamically -->
+            </div>
+            <button type="button" class="slider-btn next-btn" id="slider-next" aria-label="Next testimonial slide"
+              data-i18n-aria-label="a11y.nextSlide">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 10. PRICING & ENGAGEMENT MODELS                                 -->
+    <!-- =============================================================== -->
+    <section class="section pricing-section" id="pricing" aria-labelledby="pricing-title">
+      <div class="container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="pricing.eyebrow">Predictable Investments</span>
+          <h2 class="section-title" id="pricing-title" data-i18n="pricing.title">Transparent Engagement Models</h2>
+          <p class="section-subtitle" data-i18n="pricing.subtitle">
+            Choose the collaboration model that fits your operational needs. Every engagement is protected by clear SLAs
+            and full IP transfer.
+          </p>
+        </div>
+
+        <div class="pricing-cards-grid" id="pricing-cards-container">
+          <!-- Rendered dynamically by script.js with full i18n support -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 11. FREQUENTLY ASKED QUESTIONS (FAQ ACCORDION)                  -->
+    <!-- =============================================================== -->
+    <section class="section faq-section" id="faq" aria-labelledby="faq-title">
+      <div class="container faq-container">
+        <div class="section-header text-center reveal">
+          <span class="section-eyebrow" data-i18n="faq.eyebrow">Clear Answers</span>
+          <h2 class="section-title" id="faq-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+          <p class="section-subtitle" data-i18n="faq.subtitle">
+            Transparency is central to our delivery model. Here are direct answers to common questions about our
+            agreements, warranties, and code ownership.
+          </p>
+        </div>
+
+        <div class="accordion" id="faq-accordion">
+          <!-- Rendered dynamically by script.js with full i18n support -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =============================================================== -->
+    <!-- 12. CONTACT & CONSULTATION SECTION                             -->
+    <!-- =============================================================== -->
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="contact-grid">
+
+          <!-- Left Column: Direct Details & Guarantees -->
+          <div class="contact-info-col reveal">
+            <span class="section-eyebrow" data-i18n="contact.eyebrow">Start the Conversation</span>
+            <h2 class="section-title" id="contact-title" data-i18n="contact.title">Let's Build Your Next Complete
+              Project.</h2>
+            <p class="contact-intro" data-i18n="contact.intro">
+              Tell us about your requirements, project scope, or rescue needs. An experienced senior engineer (not an
+              aggressive salesperson) will review your brief and reply within 2 hours.
+            </p>
+
+            <div class="contact-methods-list">
+              <!-- Method 1: Email -->
+              <div class="contact-method-item">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div class="method-label" data-i18n="contact.inboxLabel">Direct Engineering Inbox</div>
+                  <a href="mailto:mohamedalnajjar204@gmail.com" class="method-link"><bdi
+                      dir="ltr">mohamedalnajjar204@gmail.com</bdi></a>
+                </div>
+              </div>
+
+              <!-- Method 2: Phone -->
+              <div class="contact-method-item">
+                <div class="contact-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path
+                      d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                    </path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="method-label" data-i18n="contact.phoneLabel">Direct Phone Line</div>
+                  <a href="tel:+201228635405" class="method-link"><bdi dir="ltr">01228635405</bdi></a>
+                </div>
+              </div>
+
+              <!-- Method 3: WhatsApp -->
+              <div class="contact-method-item">
+                <div class="contact-icon contact-icon-whatsapp">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path
+                      d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z">
+                    </path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="method-label" data-i18n="contact.whatsappLabel">Instant WhatsApp Chat</div>
+                  <a href="https://wa.me/201228635405?text=Hello%20GloryTech%20team,%20I%20would%20like%20to%20discuss%20a%20new%20project."
+                    target="_blank" rel="noopener noreferrer" class="method-link"
+                    data-i18n="contact.whatsappLinkText">Chat on WhatsApp &rarr;</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Response SLA Guarantee Box -->
+            <div class="contact-sla-box">
+              <div class="sla-header">
+                <span class="live-status-dot"></span>
+                <strong data-i18n="contact.slaTitle">Rapid Engineering Response Guarantee</strong>
+              </div>
+              <p data-i18n="contact.slaDesc">Inquiries received during business hours are reviewed by a systems
+                architect within 120 minutes.</p>
+            </div>
+          </div>
+
+          <!-- Right Column: Validated Interactive Form -->
+          <div class="contact-form-col reveal">
+            <div class="form-wrapper">
+
+              <!-- CHANGE 3: Form Success Feedback Banner (Hidden by default, revealed only after successful submission) -->
+              <div class="form-feedback-banner form-success-state" id="formSuccess" role="alert" tabindex="-1" hidden>
+                <div class="success-icon">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                  </svg>
+                </div>
+                <div class="success-content">
+                  <h3 class="success-title" data-i18n="contact.successTitle">Your request has been successfully
+                    received!</h3>
+                  <p class="success-desc" data-i18n="contact.successDesc">Thank you for contacting us. One of our senior
+                    engineers will carefully review your requirements and reply via email within two hours.</p>
+                  <button type="button" class="btn btn-sm btn-outline" id="btn-reset-form"
+                    data-i18n="contact.resetBtn">Send another consultation request</button>
+                </div>
+              </div>
+
+              <!-- CHANGE 3: Submission Error Banner (Hidden by default) -->
+              <div class="form-error-banner" id="formError" role="alert" tabindex="-1" hidden>
+                <div class="error-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                  </svg>
+                </div>
+                <div class="error-content">
+                  <p class="error-desc" id="form-error-text" data-i18n="contact.errorMessage">Something went wrong —
+                    please try again or email us directly at <a href="mailto:mohamedalnajjar204@gmail.com"><bdi
+                        dir="ltr">mohamedalnajjar204@gmail.com</bdi></a></p>
+                </div>
+              </div>
+
+              <!-- CHANGE 1: Contact Form Delivery via FormSubmit AJAX Endpoint -->
+              <!-- ALTERNATIVE 1 (No-JS Mailto Fallback):
+                   <form action="mailto:mohamedalnajjar204@gmail.com" method="POST" enctype="text/plain">
+              -->
+              <!-- ALTERNATIVE 2 (EmailJS Integration):
+                   See script.js ContactFormController for documented EmailJS implementation snippet.
+              -->
+              <form class="consultation-form" id="contactForm"
+                action="https://formsubmit.co/ajax/mohamedalnajjar204@gmail.com" method="POST"
+                onsubmit="event.preventDefault();" novalidate>
+                <!-- FormSubmit Hidden Metadata -->
+                <input type="hidden" name="_subject" value="New Consultation Request — Website Contact Form">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_captcha" value="false">
+
+                <!-- Honeypot anti-spam field (hidden from legitimate users, traps spam bots) -->
+                <input type="text" name="website" class="hidden-honeypot" tabindex="-1" autocomplete="off"
+                  style="display:none !important;" aria-hidden="true">
+
+                <h3 class="form-heading" data-i18n="contact.formHeading">Request a Free Technical Consultation</h3>
+                <p class="form-subheading" data-i18n="contact.formSubheading">Fill in your requirements below for an
+                  upfront scope and timeline estimate.</p>
+
+                <div class="form-row-2">
+                  <!-- Name Field -->
+                  <div class="form-group">
+                    <label for="form-name" class="form-label"><span data-i18n="contact.nameLabel">Your Full Name</span>
+                      <span class="required" aria-hidden="true">*</span></label>
+                    <input type="text" id="form-name" name="name" class="form-control" placeholder="e.g. Alex Morgan"
+                      data-i18n-placeholder="contact.namePlaceholder" required autocomplete="name">
+                    <span class="form-error-msg" id="name-error" aria-live="polite"></span>
+                  </div>
+
+                  <!-- Email Field -->
+                  <div class="form-group">
+                    <label for="form-email" class="form-label"><span data-i18n="contact.emailLabel">Work Email</span>
+                      <span class="required" aria-hidden="true">*</span></label>
+                    <input type="email" id="form-email" name="email" class="form-control" placeholder="alex@company.com"
+                      data-i18n-placeholder="contact.emailPlaceholder" required autocomplete="email" dir="ltr">
+                    <span class="form-error-msg" id="email-error" aria-live="polite"></span>
+                  </div>
+                </div>
+
+                <div class="form-row-2">
+                  <!-- Company Name -->
+                  <div class="form-group">
+                    <label for="form-company" class="form-label" data-i18n="contact.companyLabel">Company /
+                      Organization</label>
+                    <input type="text" id="form-company" name="company" class="form-control"
+                      placeholder="e.g. Acme Corp" data-i18n-placeholder="contact.companyPlaceholder"
+                      autocomplete="organization">
+                  </div>
+
+                  <!-- Service Select Dropdown -->
+                  <div class="form-group">
+                    <label for="form-service" class="form-label"><span data-i18n="contact.serviceLabel">Primary Service
+                        Needed</span> <span class="required" aria-hidden="true">*</span></label>
+                    <div class="select-wrapper">
+                      <select id="form-service" name="service" class="form-control" required>
+                        <option value="" disabled selected data-i18n="contact.servicePlaceholder">Select a Service...
+                        </option>
+                        <option value="Custom Websites">Custom Websites &amp; Web Apps</option>
+                        <option value="Mobile Applications">Mobile Applications (iOS/Android)</option>
+                        <option value="ERP Systems">Custom ERP Systems &amp; Automation</option>
+                        <option value="Chatbots">Intelligent Chatbots &amp; Conversational AI</option>
+                        <option value="AI-Powered Websites">AI-Powered Websites &amp; Search</option>
+                        <option value="Legacy Modernization">Optimization of Legacy Sites</option>
+                        <option value="AI Site Rescue">Rescue of AI-Generated Sites</option>
+                        <option value="Dedicated Agile Team">Dedicated Engineering Team</option>
+                      </select>
+                    </div>
+                    <span class="form-error-msg" id="service-error" aria-live="polite"></span>
+                  </div>
+                </div>
+
+                <!-- Budget Range Select -->
+                <div class="form-group" id="budget-group">
+                  <label for="form-budget" class="form-label" data-i18n="contact.budgetLabel">Estimated Project
+                    Budget</label>
+                  <div class="select-wrapper">
+                    <select id="form-budget" name="budget" class="form-control">
+                      <option value="" selected data-i18n="contact.budgetPlaceholder">Select Budget Range...</option>
+                      <option value="$100 - $500" data-i18n="contact.budgetOptions.tier1">$100 – $500 (Quick Fixes / Minor Enhancements)</option>
+                      <option value="$500 - $1,500" data-i18n="contact.budgetOptions.tier2">$500 – $1,500 (Showcase Website / Starter Store)</option>
+                      <option value="$1,500 - $3,000" data-i18n="contact.budgetOptions.tier3">$1,500 – $3,000 (Full Web App / Defined MVP)</option>
+                      <option value="$3,000 - $6,000" data-i18n="contact.budgetOptions.tier4">$3,000 – $6,000 (Mobile App / Advanced Platform)</option>
+                      <option value="$6,000 - $10,000" data-i18n="contact.budgetOptions.tier5">$6,000 – $10,000 (Custom ERP / Enterprise AI)</option>
+                      <option value="$10,000+" data-i18n="contact.budgetOptions.tier6">$10,000+ (Large-Scale Platform / Retainer)</option>
+                      <option value="custom" data-i18n="contact.budgetOptions.custom">Custom Budget (Enter your own budget)...</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Custom Budget Input Field (Revealed when Custom Budget is selected) -->
+                <div class="form-group custom-budget-container" id="custom-budget-container" hidden>
+                  <label for="form-custom-budget" class="form-label">
+                    <span data-i18n="contact.customBudgetLabel">Your Proposed Budget</span> <span class="required" aria-hidden="true">*</span>
+                  </label>
+                  <div class="custom-budget-input-wrapper">
+                    <span class="budget-currency-symbol" aria-hidden="true">$</span>
+                    <input type="text" id="form-custom-budget" name="custom_budget" class="form-control"
+                      placeholder="Enter your budget here (e.g. 750 or 3500)"
+                      data-i18n-placeholder="contact.customBudgetPlaceholder"
+                      inputmode="numeric" autocomplete="off">
+                  </div>
+                  <span class="form-error-msg" id="custom-budget-error" aria-live="polite"></span>
+                </div>
+
+                <!-- Message / Project Scope Field -->
+                <div class="form-group">
+                  <label for="form-message" class="form-label"><span data-i18n="contact.messageLabel">Project Scope
+                      &amp; Deliverables</span> <span class="required" aria-hidden="true">*</span></label>
+                  <textarea id="form-message" name="message" class="form-control" rows="4"
+                    placeholder="Describe what you want to build, target launch date, existing codebase (if any), and key technical requirements..."
+                    data-i18n-placeholder="contact.messagePlaceholder" required minlength="20"></textarea>
+                  <span class="form-error-msg" id="message-error" aria-live="polite"></span>
+                </div>
+
+                <!-- Submit Button with Loading State -->
+                <button type="submit" class="btn btn-primary btn-full form-submit-btn" id="form-submit-btn">
+                  <span class="btn-text" data-i18n="contact.submitBtn">Submit Request for Free Consultation</span>
+                  <span class="btn-spinner" aria-hidden="true" hidden>
+                    <svg class="spin-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2.5">
+                      <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+                      <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+                    </svg>
+                  </span>
+                </button>
+                <p class="form-privacy-note" data-i18n="contact.privacyNote">🔒 Your information is confidential. We
+                  execute standard mutual NDAs upon request.</p>
+              </form>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- ================= 8) FOOTER ================= -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2026 Mohamed Al Najjar — With great power comes great responsibility. 🕷</p>
+  <!-- ================================================================= -->
+  <!-- ACCESSIBLE CASE STUDY MODAL DIALOG                                -->
+  <!-- ================================================================= -->
+  <div class="modal-backdrop" id="case-study-modal-backdrop" tabindex="-1" hidden></div>
+  <div class="modal-dialog" id="case-study-modal" role="dialog" aria-modal="true" aria-labelledby="modal-case-title"
+    hidden>
+    <button type="button" class="modal-close-btn" id="modal-close-btn" aria-label="Close case study details"
+      data-i18n-aria-label="a11y.modalClose">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="modal-inner" id="modal-content-area">
+      <!-- Populated dynamically with full i18n support in script.js -->
+    </div>
+  </div>
+
+  <!-- ================================================================= -->
+  <!-- 13. COMPREHENSIVE FOOTER                                         -->
+  <!-- ================================================================= -->
+  <footer class="site-footer">
+    <div class="container footer-container">
+
+      <!-- Column 1: Brand Bio & Guarantee -->
+      <div class="footer-col footer-col-brand">
+        <a href="#hero" class="brand-logo" aria-label="GloryTech Home">
+          <svg class="brand-mark" width="32" height="32" viewBox="0 0 36 36" fill="none"
+            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="36" height="36" rx="10" fill="url(#logo-grad-f)" />
+            <path d="M10 25L18 11L26 25H20.5L18 19.5L15.5 25H10Z" fill="white" />
+            <circle cx="18" cy="15.5" r="2.2" fill="#10B981" />
+            <defs>
+              <linearGradient id="logo-grad-f" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#2563EB" />
+                <stop offset="1" stop-color="#0284C7" />
+              </linearGradient>
+            </defs>
+          </svg>
+          <span class="brand-text"><bdi dir="ltr">GloryTech<span class="brand-dot">.</span></bdi></span>
+        </a>
+        <p class="footer-tagline" data-i18n="footer.tagline">
+          We engineer and deliver complete, professional, and ready-to-use software solutions. Turnkey execution backed
+          by verified milestone delivery and guaranteed SLAs.
+        </p>
+        <div class="footer-social-links">
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+              </path>
+            </svg>
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn"
+            aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Twitter / X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
+              </path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column 2: Services Directory -->
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footer.servicesTitle">Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services" data-i18n="services.items.0.title">Custom Websites</a></li>
+          <li><a href="#services" data-i18n="services.items.1.title">Mobile Applications</a></li>
+          <li><a href="#services" data-i18n="services.items.2.title">Custom ERP Systems</a></li>
+          <li><a href="#services" data-i18n="services.items.3.title">Intelligent Chatbots</a></li>
+          <li><a href="#services" data-i18n="services.items.4.title">AI-Powered Websites</a></li>
+          <li><a href="#services" data-i18n="services.items.5.title">Legacy Modernization</a></li>
+          <li><a href="#rescue-showcase" data-i18n="services.items.6.title">AI Site Rescue</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Quick Navigation -->
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footer.exploreTitle">Explore</h4>
+        <ul class="footer-links">
+          <li><a href="#why-us" data-i18n="nav.whyUs">Why Us</a></li>
+          <li><a href="#process" data-i18n="nav.process">How We Deliver</a></li>
+          <li><a href="#portfolio" data-i18n="nav.portfolio">Selected Case Studies</a></li>
+          <li><a href="#tech-stack" data-i18n="nav.techStack">Enterprise Tech Stack</a></li>
+          <li><a href="#pricing" data-i18n="nav.pricing">Pricing &amp; Engagements</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">Frequently Asked Questions</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 4: Contact & Office -->
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footer.contactTitle">Direct Contact</h4>
+        <div class="footer-contact-details">
+          <p><strong><span data-i18n="contact.inboxLabel">Email</span>:</strong> <a
+              href="mailto:mohamedalnajjar204@gmail.com"><bdi dir="ltr">mohamedalnajjar204@gmail.com</bdi></a></p>
+          <p><strong><span data-i18n="contact.phoneLabel">Phone</span>:</strong> <a href="tel:+201228635405"><bdi
+                dir="ltr">01228635405</bdi></a></p>
+          <p><strong>HQ:</strong> <span data-i18n="footer.address">500 Technology Square, Suite 400, Cambridge, MA
+              02139</span></p>
+          <p><strong><span data-i18n="footer.hours">Hours</span>:</strong> <span data-i18n="footer.hours">Mon–Fri:
+              8am–7pm EST</span></p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p class="copyright-text">
+          &copy; <span id="current-year">2026</span> GloryTech <span data-i18n="footer.copyright">Technologies Inc. All
+            rights reserved. Built with pride for high-growth enterprises.</span>
+        </p>
+        <div class="footer-legal-links">
+          <a href="#contact" data-i18n="footer.privacy">Privacy Policy</a>
+          <span class="sep">&bull;</span>
+          <a href="#contact" data-i18n="footer.terms">Terms of Service</a>
+          <span class="sep">&bull;</span>
+          <a href="#contact" data-i18n="footer.sla">SLA Guarantee</a>
+          <span class="sep">&bull;</span>
+          <button type="button" class="back-to-top-btn" id="back-to-top" aria-label="Back to top of page">
+            <span data-i18n="footer.backToTop">Back to Top</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <line x1="12" y1="19" x2="12" y2="5"></line>
+              <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
   </footer>
 
-  <!-- GSAP + ScrollTrigger (only allowed CDN libraries) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="app.js"></script>
+  <!-- Translation Dictionaries -->
+  <script src="translations-en.js?v=3.2"></script>
+  <script src="translations-ar.js?v=3.2"></script>
+
+  <!-- Core JavaScript Module -->
+  <script src="script.js?v=3.2" defer></script>
 </body>
+
 </html>
