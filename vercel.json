@@ -1,52 +1,7 @@
 {
-  "version": 2,
-  "cleanUrls": true,
-  "functions": {
-    "server.js": {
-      "includeFiles": [
-        "css/**",
-        "js/**",
-        "assets/**",
-        "index.html",
-        "favicon.ico",
-        "robots.txt",
-        "sitemap.xml"
-      ]
-    },
-    "api/contact.js": {
-      "maxDuration": 15
-    }
-  },
-  "headers": [
-    {
-      "source": "/css/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/css; charset=UTF-8"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/js/(.*)",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/javascript; charset=UTF-8"
-        }
-      ]
-    },
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,OPTIONS" },
-        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Accept" }
-      ]
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": null,
+  "outputDirectory": "./",
+  "cleanUrls": true
 }
