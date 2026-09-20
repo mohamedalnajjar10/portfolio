@@ -1130,21 +1130,10 @@
                 </div>
               </div>
 
-              <!-- CHANGE 1: Contact Form Delivery via FormSubmit AJAX Endpoint -->
-              <!-- ALTERNATIVE 1 (No-JS Mailto Fallback):
-                   <form action="mailto:mohamedalnajjar204@gmail.com" method="POST" enctype="text/plain">
-              -->
-              <!-- ALTERNATIVE 2 (EmailJS Integration):
-                   See script.js ContactFormController for documented EmailJS implementation snippet.
-              -->
+              <!-- Contact Form Delivery via Node.js Server & Nodemailer API (/api/contact) -->
               <form class="consultation-form" id="contactForm"
-                action="https://formsubmit.co/ajax/mohamedalnajjar204@gmail.com" method="POST"
+                action="/api/contact" method="POST"
                 onsubmit="event.preventDefault();" novalidate>
-                <!-- FormSubmit Hidden Metadata -->
-                <input type="hidden" name="_subject" value="New Consultation Request — Website Contact Form">
-                <input type="hidden" name="_template" value="table">
-                <input type="hidden" name="_captcha" value="false">
-
                 <!-- Honeypot anti-spam field (hidden from legitimate users, traps spam bots) -->
                 <input type="text" name="website" class="hidden-honeypot" tabindex="-1" autocomplete="off"
                   style="display:none !important;" aria-hidden="true">
@@ -1382,8 +1371,7 @@
               href="mailto:mohamedalnajjar204@gmail.com"><bdi dir="ltr">mohamedalnajjar204@gmail.com</bdi></a></p>
           <p><strong><span data-i18n="contact.phoneLabel">Phone</span>:</strong> <a href="tel:+201228635405"><bdi
                 dir="ltr">01228635405</bdi></a></p>
-          <p><strong>HQ:</strong> <span data-i18n="footer.address">500 Technology Square, Suite 400, Cambridge, MA
-              02139</span></p>
+          <p><strong>HQ:</strong> <span data-i18n="footer.address">مصر، بورسعيد، شارع 23 يوليو</span></p>
           <p><strong><span data-i18n="footer.hours">Hours</span>:</strong> <span data-i18n="footer.hours">Mon–Fri:
               8am–7pm EST</span></p>
         </div>

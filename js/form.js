@@ -1,16 +1,16 @@
 /**
  * GloryTech Showcase - Contact Form & Validation Module
- * FormSubmit AJAX submission, Real-time Validation, Localized Feedback
+ * Nodemailer API submission, Real-time Validation, Localized Feedback
  * Exports: window.ContactFormController
  */
 
 "use strict";
 
 /* ==========================================================================
-   10. CONTACT FORM CONTROLLER (FORMSUBMIT AJAX, VALIDATION & LOCALIZED STATES)
+   10. CONTACT FORM CONTROLLER (NODEMAILER API, VALIDATION & LOCALIZED STATES)
    ========================================================================== */
 const ContactFormController = window.ContactFormController = (() => {
-  /* CHANGE 1 & 3: FormSubmit delivery to mohamedalnajjar204@gmail.com */
+  /* Direct Nodemailer delivery to mohamedalnajjar204@gmail.com via /api/contact */
   const form =
     document.getElementById("contactForm") ||
     document.getElementById("consultation-form");
@@ -44,31 +44,20 @@ const ContactFormController = window.ContactFormController = (() => {
 
   const EMAIL_REGEX =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)+$/;
-  const FORMSUBMIT_ENDPOINT =
-    "https://formsubmit.co/ajax/mohamedalnajjar204@gmail.com";
 
-  /* --------------------------------------------------------------------------
-     ALTERNATIVE 1 (No-JS Mailto Fallback):
-     In index.html, replace the form action with:
-     <form action="mailto:mohamedalnajjar204@gmail.com" method="POST" enctype="text/plain">
-     
-     ALTERNATIVE 2 (EmailJS Integration Snippet):
-     To switch from FormSubmit to EmailJS:
-     1. Include EmailJS SDK in index.html:
-        <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-     2. Initialize with your public key:
-        emailjs.init('YOUR_PUBLIC_KEY');
-     3. Replace fetch() with:
-        emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-          from_name: payload.name,
-          from_email: payload.email,
-          company: payload.company,
-          service: payload.service,
-          budget: payload.budget,
-          message: payload.message,
-          reply_to: payload.email
-        }).then(() => { ...handle success... }).catch(() => { ...handle error... });
-     -------------------------------------------------------------------------- */
+  // Endpoint resolver: targets local /api/contact (or absolute URL if previewed on LiveServer/file)
+  const getContactApiEndpoint = () => {
+    if (
+      typeof window !== "undefined" &&
+      window.location &&
+      (window.location.protocol === "http:" || window.location.protocol === "https:")
+    ) {
+      if (window.location.port === "8085" || !window.location.port) {
+        return "/api/contact";
+      }
+    }
+    return "http://localhost:8085/api/contact";
+  };
 
   // Client-side sanitization to neutralize potential HTML injection tags
   const sanitizeInput = (val) => {
@@ -367,14 +356,13 @@ const ContactFormController = window.ContactFormController = (() => {
       service: sanitizeInput(serviceSelect ? serviceSelect.value : ""),
       budget: sanitizeInput(budgetVal),
       message: sanitizeInput(messageInput.value),
-      _subject: "New Consultation Request — Website Contact Form",
-      _template: "table",
-      _captcha: "false",
+      website: honeypotInput ? honeypotInput.value : "",
     };
 
     try {
-      /* CHANGE 1: FormSubmit AJAX POST fetch request */
-      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+      /* Direct Nodemailer API fetch request */
+      const endpoint = getContactApiEndpoint();
+      const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -389,19 +377,13 @@ const ContactFormController = window.ContactFormController = (() => {
 
       const isSuccess =
         response.ok &&
-        (data.success === "true" ||
-          data.success === true ||
+        (data.success === true ||
+          data.success === "true" ||
           (data.message &&
             data.message.toLowerCase().includes("successfully")));
-      const isActivationRequired =
-        (data.message && data.message.toLowerCase().includes("activation")) ||
-        (!isSuccess &&
-          data.success === "false" &&
-          data.message &&
-          data.message.includes("Activate Form"));
 
       if (isSuccess) {
-        /* CHANGE 3: Hide form, reveal success feedback, manage focus and polite a11y announcement */
+        /* Hide form, reveal success feedback, manage focus and polite a11y announcement */
         form.hidden = true;
         if (successBanner) {
           successBanner.hidden = false;
@@ -416,29 +398,9 @@ const ContactFormController = window.ContactFormController = (() => {
               "Your request has been successfully received!";
           }
         }
-      } else if (isActivationRequired) {
-        /* Inform owner if form is pending FormSubmit email confirmation */
-        if (errorBanner) {
-          errorBanner.classList.add("is-warning");
-          errorBanner.hidden = false;
-          errorBanner.setAttribute("tabindex", "-1");
-          errorBanner.focus();
-
-          const dict = I18nController.getDictionary();
-          const errorText = document.getElementById("form-error-text");
-          if (errorText) {
-            errorText.textContent =
-              dict.contact?.activationNotice || data.message;
-          }
-          const announcer = document.getElementById("a11y-announcer");
-          if (announcer) {
-            announcer.textContent =
-              dict.contact?.activationNotice || data.message;
-          }
-        }
       } else {
         throw new Error(
-          data.message || "FormSubmit request returned non-OK status",
+          data.message || "Contact API returned non-OK status",
         );
       }
     } catch (err) {

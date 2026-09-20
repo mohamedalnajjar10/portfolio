@@ -236,75 +236,65 @@ Reply directly to: ${email}
       // 4. Send Email via Nodemailer
       const transporter = createEmailTransporter();
 
-      if (transporter) {
-        try {
-          await transporter.sendMail({
-            from: senderEmail,
-            to: receiverEmail,
-            replyTo: email,
-            subject: emailSubject,
-            text: emailText,
-            html: emailHtml,
-          });
-          console.log(
-            `\n[Nodemailer] ✅ Email successfully sent to ${receiverEmail} for request from ${name} (${email})`,
-          );
-        } catch (mailError) {
-          console.error(
-            "[Nodemailer Error] Failed to dispatch email via SMTP:",
-            mailError,
-          );
-          // If Gmail auth fails, log helpful diagnostic
-          if (mailError.code === "EAUTH") {
-            console.error(
-              "\n[Nodemailer Auth Hint] Gmail rejected login credentials.",
-            );
-            console.error(
-              "Please generate a 16-character App Password at https://myaccount.google.com/apppasswords and set it in .env under SMTP_PASS.\n",
-            );
-          }
-          // Do not break the user experience: we logged the error and full inquiry details
-        }
-      } else {
-        // Mock / Development Mode (when SMTP_PASS is not yet provided in .env)
-        console.log(
-          "\n============================================================",
+      if (!transporter) {
+        console.error(
+          "[Nodemailer Error] No SMTP credentials provided in .env (SMTP_PASS is required).",
         );
-        console.log("   📨 [Nodemailer Form Dispatch - In-Memory Log]");
-        console.log(
-          "============================================================",
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            success: false,
+            message: "Email service is not configured. Please check SMTP credentials in .env.",
+          }),
         );
-        console.log(`   From:    ${name} <${email}>`);
-        console.log(`   Company: ${company || "N/A"}`);
-        console.log(`   Service: ${service}`);
-        console.log(`   Budget:  ${budget}`);
-        console.log(`   Message: ${message}`);
-        console.log(
-          "------------------------------------------------------------",
-        );
-        console.log(`   Target:  ${receiverEmail}`);
-        console.log(
-          "   ℹ️ To deliver live emails to your Gmail inbox, paste your",
-        );
-        console.log(
-          "      16-character Google App Password into SMTP_PASS in .env",
-        );
-        console.log(
-          "============================================================\n",
-        );
+        return;
       }
 
-      // 5. Send Success Response to Frontend
-      res.writeHead(200, {
-        "Content-Type": "application/json",
-        "Cache-Control": "no-cache",
-      });
-      res.end(
-        JSON.stringify({
-          success: true,
-          message: "Your request has been sent successfully!",
-        }),
-      );
+      try {
+        await transporter.sendMail({
+          from: senderEmail,
+          to: receiverEmail,
+          replyTo: email,
+          subject: emailSubject,
+          text: emailText,
+          html: emailHtml,
+        });
+        console.log(
+          `\n[Nodemailer] ✅ Email successfully sent to ${receiverEmail} for request from ${name} (${email})`,
+        );
+
+        // 5. Send Success Response to Frontend
+        res.writeHead(200, {
+          "Content-Type": "application/json",
+          "Cache-Control": "no-cache",
+        });
+        res.end(
+          JSON.stringify({
+            success: true,
+            message: "Your request has been sent successfully!",
+          }),
+        );
+      } catch (mailError) {
+        console.error(
+          "[Nodemailer Error] Failed to dispatch email via SMTP:",
+          mailError,
+        );
+        if (mailError.code === "EAUTH") {
+          console.error(
+            "\n[Nodemailer Auth Hint] Gmail rejected login credentials.",
+          );
+          console.error(
+            "Please generate a 16-character App Password at https://myaccount.google.com/apppasswords and set it in .env under SMTP_PASS.\n",
+          );
+        }
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(
+          JSON.stringify({
+            success: false,
+            message: "Failed to send email via SMTP. Please check server configuration.",
+          }),
+        );
+      }
     } catch (parseError) {
       console.error("[Contact API Error]", parseError);
       res.writeHead(400, { "Content-Type": "application/json" });

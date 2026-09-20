@@ -477,7 +477,7 @@ window.translationsEn = {
     servicesTitle: "Services",
     exploreTitle: "Explore",
     contactTitle: "Direct Contact",
-    address: "500 Technology Square, Suite 400, Cambridge, MA 02139",
+    address: "Egypt, Port Said, 23rd of July St.",
     hours: "Mon–Fri: 8am–7pm EST",
     copyright: "Technologies Inc. All rights reserved. Built with pride for high-growth enterprises.",
     privacy: "Privacy Policy",
