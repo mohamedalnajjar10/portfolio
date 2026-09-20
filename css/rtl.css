@@ -1,0 +1,155 @@
+/* ==========================================================================
+   GloryTech SHOWCASE WEBSITE - RTL & ARABIC TYPOGRAPHY OVERRIDES
+   Architecture: Bidirectional (RTL) Layout, Font Stacks & Bidi Isolation
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   ARABIC (RTL) TYPOGRAPHY & DIRECTION TOKENS
+   -------------------------------------------------------------------------- */
+[dir="rtl"] {
+  --font-heading: 'Cairo', 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --font-body: 'IBM Plex Sans Arabic', 'Inter', -apple-system, sans-serif;
+  --line-height-body: 1.88;
+  --line-height-heading: 1.35;
+  font-size: 103%;
+}
+
+/* ==========================================================================
+   ---- Arabic / RTL Typography Overrides ----
+   ========================================================================== */
+:root[dir="rtl"],
+:root[lang="ar"],
+[dir="rtl"],
+[lang="ar"] {
+  /* FIX: 6. Wrong or missing Arabic font - complete curated Arabic web font stack */
+  --font-body: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Cairo', 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* FIX: 3. Line-height too small - Arabic ascenders/descenders require 1.7-2.0 to prevent collision */
+  --line-height-body: 1.85;
+  --line-height-heading: 1.45;
+}
+
+/* FIX: 1. letter-spacing - Arabic script is CONNECTED: letter-spacing causes broken ligatures and glyph overlap */
+/* FIX: 2. text-transform: uppercase - Arabic has no letter case; neutralize uppercase text-transform */
+[dir="rtl"],
+[dir="rtl"] *,
+[lang="ar"],
+[lang="ar"] * {
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* FIX: 4. Fixed heights / line clamps - ensure site header can flex and never squashes Arabic ascenders/descenders */
+[dir="rtl"] .site-header,
+[lang="ar"] .site-header {
+  min-height: var(--header-height);
+  height: auto;
+}
+
+[dir="rtl"] .header-container,
+[lang="ar"] .header-container {
+  min-height: var(--header-height);
+  gap: var(--space-4);
+}
+
+/* FIX: 6 & 7. Brand logo typography & bidi isolation in Arabic */
+[dir="rtl"] .brand-logo,
+[lang="ar"] .brand-logo {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  letter-spacing: 0 !important;
+}
+
+/* FIX: 3 & 5 & 6. Arabic Navigation Link Typography & Single-Line Flow */
+[dir="rtl"] .nav-link,
+[lang="ar"] .nav-link {
+  font-family: var(--font-body);
+  /* Arabic visually renders ~10-15% smaller than Latin at identical px size; scaled up */
+  font-size: 0.945rem;
+  font-weight: 500;
+  line-height: 1.6;
+  white-space: nowrap !important; /* FIX: 5. Prevent mid-word line-wrapping and vertical stacking */
+  display: inline-flex;
+  align-items: center;
+  padding-block: var(--space-2);
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}
+
+/* FIX: 8. Absolute positioning / transform hacks - uniform bottom alignment for active indicator */
+[dir="rtl"] .nav-link.active::after,
+[lang="ar"] .nav-link.active::after {
+  bottom: 0;
+  inset-inline-start: 0;
+  width: 100%;
+  height: 2.5px;
+  background-color: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+/* FIX: 5. Desktop nav container & fluid gap between items */
+[dir="rtl"] .nav-list,
+[lang="ar"] .nav-list {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.15vw, 1.2rem); /* Dynamically scales so all 8 Arabic items fit comfortably on single line */
+  white-space: nowrap !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* FIX: Header actions and buttons in Arabic */
+[dir="rtl"] .header-actions,
+[lang="ar"] .header-actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.35rem, 0.75vw, var(--space-2));
+  flex-shrink: 0;
+}
+
+[dir="rtl"] .lang-toggle-btn,
+[lang="ar"] .lang-toggle-btn {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap !important;
+  letter-spacing: 0 !important;
+}
+
+[dir="rtl"] .header-cta,
+[lang="ar"] .header-cta {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap !important;
+  padding-inline: 0.85rem;
+  letter-spacing: 0 !important;
+}
+
+/* FIX: Mobile drawer typography in Arabic */
+[dir="rtl"] .mobile-nav-link,
+[lang="ar"] .mobile-nav-link {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.7;
+  text-align: start;
+  white-space: nowrap !important;
+  letter-spacing: 0 !important;
+}
+
+[dir="rtl"] .mobile-nav-cta,
+[lang="ar"] .mobile-nav-cta {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0 !important;
+}
+
+/* Bidirectional (Bidi) Isolation for numbers, emails, and code tokens */
+bdi,
+[dir="ltr"] {
+  unicode-bidi: isolate;
+  direction: ltr;
+  display: inline-block;
+}
+

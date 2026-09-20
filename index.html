@@ -46,12 +46,22 @@
     href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
     rel="stylesheet">
 
-  <!-- Core Stylesheet -->
-  <link rel="stylesheet" href="styles.css?v=3.2">
+  <!-- Core Stylesheet: Design tokens, layout, reset & components -->
+  <!-- REORG: styles.css → css/styles.css -->
+  <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Favicon via SVG Data URI -->
-  <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563EB'/><path d='M8 22L16 10L24 22H19L16 17L13 22H8Z' fill='%23F8FAFC'/><circle cx='16' cy='14' r='2' fill='%2310B981'/></svg>">
+  <!-- Themes: Dark & Light Mode Variables -->
+  <!-- REORG: styles.css (themes) → css/themes.css -->
+  <link rel="stylesheet" href="css/themes.css">
+
+  <!-- Internationalization: RTL & Arabic Typography Overrides -->
+  <!-- REORG: styles.css (rtl) → css/rtl.css -->
+  <link rel="stylesheet" href="css/rtl.css">
+
+  <!-- Favicon via Standard ICO & SVG -->
+  <!-- REORG: data URI → favicon.ico & assets/img/logo/logo.svg -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="assets/img/logo/logo.svg">
 
   <!-- Structured Data: Organization & ProfessionalService JSON-LD Schema -->
   <script type="application/ld+json">
@@ -1389,9 +1399,11 @@
             rights reserved. Built with pride for high-growth enterprises.</span>
         </p>
         <div class="footer-legal-links">
-          <a href="#contact" data-i18n="footer.privacy">Privacy Policy</a>
+          <!-- REORG: #contact → assets/docs/privacy-policy.html -->
+          <a href="assets/docs/privacy-policy.html" data-i18n="footer.privacy">Privacy Policy</a>
           <span class="sep">&bull;</span>
-          <a href="#contact" data-i18n="footer.terms">Terms of Service</a>
+          <!-- REORG: #contact → assets/docs/terms.html -->
+          <a href="assets/docs/terms.html" data-i18n="footer.terms">Terms of Service</a>
           <span class="sep">&bull;</span>
           <a href="#contact" data-i18n="footer.sla">SLA Guarantee</a>
           <span class="sep">&bull;</span>
@@ -1408,12 +1420,29 @@
     </div>
   </footer>
 
-  <!-- Translation Dictionaries -->
-  <script src="translations-en.js?v=3.2"></script>
-  <script src="translations-ar.js?v=3.2"></script>
+  <!-- 1. Translation Dictionaries: Must load before i18n & dynamic content engine -->
+  <!-- REORG: translations-en.js → js/translations-en.js -->
+  <script src="js/translations-en.js" defer></script>
+  <!-- REORG: translations-ar.js → js/translations-ar.js -->
+  <script src="js/translations-ar.js" defer></script>
 
-  <!-- Core JavaScript Module -->
-  <script src="script.js?v=3.2" defer></script>
+  <!-- 2. Animation & UI Functional Modules -->
+  <!-- REORG: script.js (animations) → js/animations.js -->
+  <script src="js/animations.js" defer></script>
+  <!-- REORG: script.js (ui) → js/ui.js -->
+  <script src="js/ui.js" defer></script>
+
+  <!-- 3. Form Validation & Delivery Module -->
+  <!-- REORG: script.js (form) → js/form.js -->
+  <script src="js/form.js" defer></script>
+
+  <!-- 4. Internationalization & Dynamic Content Engine -->
+  <!-- REORG: script.js (i18n) → js/i18n.js -->
+  <script src="js/i18n.js" defer></script>
+
+  <!-- 5. Main Orchestrator: Initializes all controllers upon DOMContentLoaded -->
+  <!-- REORG: script.js → js/script.js -->
+  <script src="js/script.js" defer></script>
 </body>
 
 </html>

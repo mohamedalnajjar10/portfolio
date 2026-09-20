@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.glorytech.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.glorytech.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="ar" href="https://www.glorytech.com/?lang=ar" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.glorytech.com/" />
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.glorytech.com/assets/docs/privacy-policy.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://www.glorytech.com/assets/docs/terms.html</loc>
+    <lastmod>2026-09-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+</urlset>
